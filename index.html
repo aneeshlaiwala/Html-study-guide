@@ -427,6 +427,36 @@ select.sel{font-family:var(--ui);font-weight:600}
 .hoaxcard{background:var(--canvas);border:1px solid var(--line);border-radius:12px;padding:24px 20px;margin:12px 0;text-align:center}
 .hoaxcard .hq{font-size:1.1rem;font-weight:700;line-height:1.55;max-width:52ch;margin:0 auto}
 
+/* ---------- review paper walkthrough ---------- */
+.rpw{border:2px solid var(--gold);border-radius:var(--r);overflow:hidden;margin:22px 0;background:var(--paper)}
+.rpw.done{border-color:var(--grass)}
+.rpwhead{background:var(--gold-l);padding:13px 17px;border-bottom:1px solid #EFDCA9}
+.rpw.done .rpwhead{background:var(--grass-l);border-bottom-color:#BFE0C2}
+.rpwtag{font-size:.67rem;font-weight:800;letter-spacing:1.1px;color:#8A6200;margin-bottom:5px}
+.rpw.done .rpwtag{color:var(--grass-d)}
+.rpwq{font-family:var(--disp);font-weight:700;font-size:1.02rem;line-height:1.45;max-width:66ch}
+.rpwq code{font-family:var(--mono);font-size:.88em;background:rgba(255,255,255,.7);border:1px solid #E5D3A6;padding:1px 6px;border-radius:5px;white-space:nowrap}
+.rpwbody{padding:14px 17px 17px}
+.rpwsec{margin-bottom:18px}
+.rpwsec:last-child{margin-bottom:0}
+.rpwlabel{display:block;font-size:.67rem;font-weight:800;letter-spacing:1.1px;color:var(--ink2);margin-bottom:8px}
+.rpwout{margin:0}
+.rpobs{display:grid;gap:8px}
+.rpo{display:flex;gap:11px;align-items:flex-start;background:var(--canvas);border-radius:9px;padding:11px 13px}
+.rpoi{flex:0 0 auto;font-size:.95rem;line-height:1.4}
+.rpo div{font-size:.93rem;line-height:1.55}
+.rpwstep{display:flex;gap:12px;align-items:flex-start;background:var(--sky-l);border:1px solid #BFDCF5;border-radius:9px;padding:12px 14px;margin-bottom:10px}
+.rpw.done .rpwstep{background:var(--grass-l);border-color:#BFE0C2}
+.rpwsn{flex:0 0 27px;height:27px;border-radius:50%;background:var(--sky);color:#fff;display:grid;place-items:center;font-weight:800;font-size:.83rem;font-family:var(--mono)}
+.rpw.done .rpwsn{background:var(--grass)}
+.rpwstep div{font-size:.94rem;line-height:1.58}
+.rpwnav{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:10px}
+.rpwnav .btn:disabled{opacity:.42;cursor:default}
+.rpwcount{font-size:.8rem;font-weight:700;color:var(--ink2);margin-left:auto;font-family:var(--mono)}
+.rpwmarks{margin:0 0 0 18px;padding-left:6px}
+.rpwmarks li{margin:6px 0;font-size:.94rem}
+.rpwmarks code{font-family:var(--mono);font-size:.88em;background:#F0F4F1;border:1px solid var(--line);padding:1px 5px;border-radius:5px}
+
 #spark{position:fixed;inset:0;pointer-events:none;z-index:200}
 #toast{
   position:fixed;left:50%;bottom:24px;transform:translateX(-50%) translateY(140px);
@@ -444,6 +474,9 @@ select.sel{font-family:var(--ui);font-weight:600}
   code.t{overflow-wrap:anywhere}
   .opts4{grid-template-columns:1fr}
   .qq{padding-left:10px}
+  .rpwbody{padding:12px 13px 14px}
+  .rpwq{font-size:.95rem}
+  .rpwcount{margin-left:0;width:100%}
   .emoji{font-size:1.8rem;letter-spacing:3px}
   .jokes{grid-template-columns:1fr}
   .why{font-size:.62rem;padding:2px 8px}
@@ -775,6 +808,17 @@ direction="Right" height=100 bgcolor="Red"&gt;
     <div class="fb" data-msg="Small i gives i, ii, iii. Capital I gives I, II, III."></div>
   </div>
 
+  <h3 class="head">Straight from the review paper</h3>
+  <p>Three list questions from your last review paper, each rebuilt from the picture upwards. Work through it one step at a time and watch the output build.</p>
+  <div class="rpw" data-w="rp_cars"></div>
+  <div class="rpw" data-w="rp_science"></div>
+  <div class="rpw" data-w="rp_recipe"></div>
+
+  <h3 class="head">The list error-corrections from the paper</h3>
+  <p>Two lines of code from Question 1, section C. Run each broken version first &mdash; seeing the failure is what makes the fix stick.</p>
+  <div class="rpw" data-w="rp_ordered"></div>
+  <div class="rpw" data-w="rp_bgcolor"></div>
+
   <div class="box g">
     <span class="tag">&#10003; BUILD 1 IN ONE TABLE</span>
     <div class="tw" style="margin:8px 0 0">
@@ -913,6 +957,10 @@ direction="Right" height=100 bgcolor="Red"&gt;
     <div class="fb" data-msg="loop is the number of repeats. Leave it out and it scrolls forever."></div>
   </div>
 
+  <h3 class="head">Straight from the review paper</h3>
+  <p>The marquee question from your last review paper, and the one-line answer it wants. Work through it one step at a time and watch the output build.</p>
+  <div class="rpw" data-w="rp_marquee"></div>
+
   <div class="box g">
     <span class="tag">&#10003; BUILD 2 IN ONE TABLE</span>
     <div class="tw" style="margin:8px 0 0">
@@ -1022,6 +1070,11 @@ direction="Right" height=100 bgcolor="Red"&gt;
 
   <div class="task" data-t="t3"></div>
   <div class="task" data-t="t4"></div>
+
+  <h3 class="head">Straight from the review paper</h3>
+  <p>Two image questions from your last review paper &mdash; one error to correct, one to explain. Work through it one step at a time and watch the output build.</p>
+  <div class="rpw" data-w="rp_image"></div>
+  <div class="rpw" data-w="rp_alt"></div>
 
   <h3 class="head">Prove it</h3>
   <div class="quiz" data-a="c">
@@ -1138,6 +1191,10 @@ CLICK HERE &lt;/a&gt;
   </div>
 
   <div class="task" data-t="t5"></div>
+
+  <h3 class="head">Straight from the review paper</h3>
+  <p>The href-and-src question from your last review paper &mdash; the one almost everybody gets wrong. Work through it one step at a time and watch the output build.</p>
+  <div class="rpw" data-w="rp_swap"></div>
 
   <h3 class="head">Prove it</h3>
   <div class="quiz" data-a="b">
@@ -1283,6 +1340,11 @@ CLICK HERE &lt;/a&gt;
   <div class="pad" data-s="tbl_houses"></div>
 
   <div class="task" data-t="t11"></div>
+
+  <h3 class="head">Straight from the review paper</h3>
+  <p>This is the exact table question from your last review paper, taken apart. Work through it one step at a time and watch the output build.</p>
+  <div class="rpw" data-w="rp_scientists"></div>
+
 
 
   <h3 class="head">The five words you must be able to define</h3>
@@ -1461,6 +1523,11 @@ CLICK HERE &lt;/a&gt;
   <div class="pad" data-s="tbl_broken"></div>
 
   <div class="task" data-t="t12"></div>
+
+  <h3 class="head">The table error-correction from the paper</h3>
+  <p>One line of code, two mistakes, and a browser that will not tell you about either.</p>
+  <div class="rpw" data-w="rp_bordercolor"></div>
+
 
   <div class="box b">
     <span class="tag">&#128218; LET'S KNOW MORE</span>
@@ -5497,6 +5564,469 @@ TASKS.t12 = {n:'Task 12', title:'One title across the top',
   },
   sol:'<table>\n<tr>\n<th colspan="2">House Cup</th>\n</tr>\n<tr>\n<th>House</th><th>Points</th>\n</tr>\n<tr>\n<td>Gryffindor</td><td>482</td>\n</tr>\n<tr>\n<td>Ravenclaw</td><td>426</td>\n</tr>\n</table>'};
 
+
+var RPW = {
+
+/* ---------- Q2 B.1 : the Famous Scientists table ---------- */
+rp_scientists:{
+ q:'Question 2, B.1',
+ file:'scientists.html',
+ title:'Apply the knowledge of HTML tags and write the HTML code to get the following output.',
+ output:'<table style="border-collapse:collapse;font-family:\'Times New Roman\',serif">'+
+   '<tr><th style="border:2px solid #000;padding:3px 9px">Famous Scientist</th><th style="border:2px solid #000;padding:3px 9px">Invention</th></tr>'+
+   '<tr><td style="border:2px solid #000;padding:3px 9px">Thomas Edison</td><td style="border:2px solid #000;padding:3px 9px">Light Bulb</td></tr>'+
+   '<tr><td style="border:2px solid #000;padding:3px 9px">James Watt</td><td style="border:2px solid #000;padding:3px 9px">Steam Engine</td></tr>'+
+   '<tr><td style="border:2px solid #000;padding:3px 9px">Wright Brothers</td><td style="border:2px solid #000;padding:3px 9px">Airplane</td></tr></table>',
+ observe:[
+  ['There are 4 rows and 2 columns','So 8 cells in total. Every &lt;tr&gt; will hold exactly 2 cells — count them before you write a thing.'],
+  ['The top row is bold','Bold and centred means &lt;th&gt;, not &lt;td&gt;. You do not add &lt;b&gt; — &lt;th&gt; does it for you.'],
+  ['Every cell has a visible line around it','So a border is set. The answer key uses the attribute form: &lt;table border="2"&gt;.'],
+  ['Two facts about each scientist','Name and invention — which is exactly why this is a table and not a list.']
+ ],
+ steps:[
+  {t:'Start with the page skeleton',
+   d:'Every full-code answer needs html, head with a title, and body. Examiners look for these. Write them first so you never forget them under pressure.',
+   code:'<html>\n<head>\n<title>Famous Scientists</title>\n</head>\n<body>\n\n</body>\n</html>'},
+  {t:'Open the table with its border',
+   d:'The picture shows lines around every cell, so add <b>border="2"</b> straight onto the table tag. Nothing appears yet — an empty table has nothing to draw.',
+   code:'<html>\n<head>\n<title>Famous Scientists</title>\n</head>\n<body>\n\n<table border="2">\n</table>\n\n</body>\n</html>'},
+  {t:'Add the heading row using &lt;th&gt;',
+   d:'The first row is bold in the picture, so its two cells are <b>&lt;th&gt;</b>. One &lt;tr&gt;, two &lt;th&gt; inside it. The bold is automatic.',
+   code:'<html>\n<head>\n<title>Famous Scientists</title>\n</head>\n<body>\n\n<table border="2">\n<tr>\n<th>Famous Scientist</th>\n<th>Invention</th>\n</tr>\n</table>\n\n</body>\n</html>'},
+  {t:'Add the first scientist',
+   d:'A new &lt;tr&gt;, and inside it <b>two &lt;td&gt;</b> — the same number of cells as the heading row. That matching count is the whole discipline of building a table.',
+   code:'<html>\n<head>\n<title>Famous Scientists</title>\n</head>\n<body>\n\n<table border="2">\n<tr>\n<th>Famous Scientist</th>\n<th>Invention</th>\n</tr>\n<tr>\n<td>Thomas Edison</td>\n<td>Light Bulb</td>\n</tr>\n</table>\n\n</body>\n</html>'},
+  {t:'Add the remaining two rows',
+   d:'Exactly the same shape, twice more. James Watt with Steam Engine, Wright Brothers with Airplane. Four rows, two cells each — count them against the picture.',
+   code:'<html>\n<head>\n<title>Famous Scientists</title>\n</head>\n<body>\n\n<table border="2">\n<tr>\n<th>Famous Scientist</th>\n<th>Invention</th>\n</tr>\n<tr>\n<td>Thomas Edison</td>\n<td>Light Bulb</td>\n</tr>\n<tr>\n<td>James Watt</td>\n<td>Steam Engine</td>\n</tr>\n<tr>\n<td>Wright Brothers</td>\n<td>Airplane</td>\n</tr>\n</table>\n\n</body>\n</html>'},
+  {t:'Check it against the picture',
+   d:'Four rows ✓ two columns ✓ bold heading row ✓ lines around every cell ✓. This is the complete answer. Compare your version with the one running on the right.',
+   code:'<html>\n<head>\n<title>Famous Scientists</title>\n</head>\n<body>\n\n<table border="2">\n<tr>\n<th>Famous Scientist</th>\n<th>Invention</th>\n</tr>\n<tr>\n<td>Thomas Edison</td>\n<td>Light Bulb</td>\n</tr>\n<tr>\n<td>James Watt</td>\n<td>Steam Engine</td>\n</tr>\n<tr>\n<td>Wright Brothers</td>\n<td>Airplane</td>\n</tr>\n</table>\n\n</body>\n</html>'}
+ ],
+ marks:[
+  'The <b>&lt;table&gt;</b> tag opened and closed, with a <b>border</b> set.',
+  'The heading row using <b>&lt;th&gt;</b> — using &lt;td&gt;&lt;b&gt; instead usually loses this mark.',
+  'Every <b>&lt;td&gt;</b> sitting inside its own <b>&lt;tr&gt;</b>, four rows in all.',
+  'All eight pieces of text, spelled as shown in the picture.',
+  'The page skeleton — html, head, title, body — because the question says "write the HTML code", not "write the table".'
+ ]
+},
+
+/* ---------- Q1 C.4 : bordercolor ---------- */
+rp_bordercolor:{
+ q:'Question 1, C.4',
+ file:'fix-bordercolor.html',
+ title:'Study the following HTML code. Identify the error and rewrite the corrected code. &nbsp; <code>&lt;table border colour = "red"&gt;</code>',
+ output:'<table style="border-collapse:collapse;font-family:\'Times New Roman\',serif">'+
+   '<tr><td style="border:2px solid red;padding:3px 10px">A</td><td style="border:2px solid red;padding:3px 10px">B</td></tr>'+
+   '<tr><td style="border:2px solid red;padding:3px 10px">C</td><td style="border:2px solid red;padding:3px 10px">D</td></tr></table>'+
+   '<div class="dimnote" style="margin-top:6px">What the code was meant to produce</div>',
+ observe:[
+  ['"border colour" has a space in it','HTML attribute names are always <b>one word</b>. A space makes the browser read it as two separate attributes.'],
+  ['It is spelled the British way','HTML uses American spelling throughout — <b>color</b>, never colour. The same trap appears in Q1 C.1 with bgcolour.'],
+  ['So there are two faults in five characters','Remove the space and drop the u. The correct attribute is <b>bordercolor</b>.']
+ ],
+ steps:[
+  {t:'See what the wrong code actually does',
+   d:'Run it. The border is there but it is <b>black, not red</b> — the browser understood "border" and quietly ignored "colour" because no such attribute exists. Wrong code does not always look broken.',
+   code:'<html>\n<body>\n\n<table border colour = "red">\n<tr><td>A</td><td>B</td></tr>\n<tr><td>C</td><td>D</td></tr>\n</table>\n\n</body>\n</html>'},
+  {t:'Close up the space',
+   d:'Attribute names never contain spaces. <b>border colour</b> becomes <b>bordercolour</b> — still wrong, but now it is one word and one mistake instead of two.',
+   code:'<html>\n<body>\n\n<table border bordercolour = "red">\n<tr><td>A</td><td>B</td></tr>\n<tr><td>C</td><td>D</td></tr>\n</table>\n\n</body>\n</html>'},
+  {t:'Use the American spelling',
+   d:'Drop the <b>u</b>: bordercolour becomes <b>bordercolor</b>. Run it now — the border turns red, which is how you know the attribute finally reached the browser.',
+   code:'<html>\n<body>\n\n<table border bordercolor = "red">\n<tr><td>A</td><td>B</td></tr>\n<tr><td>C</td><td>D</td></tr>\n</table>\n\n</body>\n</html>'},
+  {t:'Give the border a width too',
+   d:'The answer key writes <code>&lt;table bordercolor = "red"&gt;</code>. Adding a number, as in <b>border="2"</b>, makes the line thicker and the colour easier to see. Both forms are accepted.',
+   code:'<html>\n<body>\n\n<table border = "2" bordercolor = "red">\n<tr><td>A</td><td>B</td></tr>\n<tr><td>C</td><td>D</td></tr>\n</table>\n\n</body>\n</html>'}
+ ],
+ marks:[
+  'Naming the error: <b>the attribute is written as two words and with British spelling</b>.',
+  'Rewriting it correctly as <b>bordercolor</b>, one word, American spelling.',
+  'Not changing anything else — the question asks you to correct the error, not rebuild the table.'
+ ]
+}
+
+};
+
+/* ---------- Q2 B.2 : Car Brands List ---------- */
+RPW.rp_cars = {
+ q:'Question 2, B.2',
+ file:'car-brands.html',
+ title:'Apply the knowledge of HTML tags and write the HTML code to get the following output.',
+ output:'<div style="font-family:\'Times New Roman\',serif"><h1 style="margin:0 0 6px;font-size:1.6rem">Car Brands List</h1>'+
+   '<ul style="list-style:disc;margin:0 0 0 24px"><li>BMW</li><li>FERRARI</li><li>MERCEDES</li><li>LAMBORGHINI</li></ul></div>'+
+   '<div class="dimnote" style="margin-top:6px">The browser tab in the paper reads "Car Brands List" — that is the &lt;title&gt;</div>',
+ observe:[
+  ['The heading is large and bold','That is an &lt;h1&gt;, the biggest heading. Do not use &lt;b&gt; — the size tells you it is a heading tag.'],
+  ['The browser tab says "Car Brands List" too','So the &lt;title&gt; has the same text as the heading. Easy mark, easily missed.'],
+  ['The bullets are small filled circles','That is <b>disc</b>, the default for an unordered list. The answer key writes it out as type="disc" anyway.'],
+  ['One fact about each car','Just the name — so a list is correct here, not a table.']
+ ],
+ steps:[
+  {t:'Skeleton with the title from the tab',
+   d:'The paper shows the browser tab, and that text is the &lt;title&gt;. Copy it exactly: <b>Car Brands List</b>. The output panel stays blank for now — a title only names the tab, it puts nothing on the page.',
+   code:'<html>\n<head> <title>Car Brands List</title> </head>\n<body>\n\n</body>\n</html>'},
+  {t:'Add the heading',
+   d:'Large and bold at the top of the page means <b>&lt;h1&gt;</b>. It closes with &lt;/h1&gt; — headings are container tags.',
+   code:'<html>\n<head> <title>Car Brands List</title> </head>\n<body>\n<h1> Car Brands List </h1>\n\n</body>\n</html>'},
+  {t:'Open an unordered list with disc bullets',
+   d:'Round filled bullets and no numbering means <b>&lt;ul&gt;</b>. disc is the default, but writing <b>type="disc"</b> shows the examiner you know it.',
+   code:'<html>\n<head> <title>Car Brands List</title> </head>\n<body>\n<h1> Car Brands List </h1>\n<ul type="disc">\n</ul>\n</body>\n</html>'},
+  {t:'Add the four cars',
+   d:'One <b>&lt;li&gt;</b> per brand, spelled in capitals exactly as the picture shows: BMW, FERRARI, MERCEDES, LAMBORGHINI.',
+   code:'<html>\n<head> <title>Car Brands List</title> </head>\n<body>\n<h1> Car Brands List </h1>\n<ul type="disc">\n<li>BMW</li>\n<li>FERRARI</li>\n<li>MERCEDES</li>\n<li>LAMBORGHINI</li>\n</ul>\n</body>\n</html>'},
+  {t:'Check it against the picture',
+   d:'Heading ✓ four bullets ✓ round filled markers ✓ tab title ✓. Try changing type to <b>square</b> and you will see instantly why the value matters.',
+   code:'<html>\n<head> <title>Car Brands List</title> </head>\n<body>\n<h1> Car Brands List </h1>\n<ul type="disc">\n<li>BMW</li>\n<li>FERRARI</li>\n<li>MERCEDES</li>\n<li>LAMBORGHINI</li>\n</ul>\n</body>\n</html>'}
+ ],
+ marks:[
+  'The <b>&lt;title&gt;</b> matching the browser tab in the picture.',
+  'The heading in <b>&lt;h1&gt;</b> tags.',
+  'An <b>unordered</b> list — &lt;ol&gt; here would lose the mark, because the output has bullets and no numbers.',
+  'Four <b>&lt;li&gt;</b> items with the brand names in capitals.'
+ ]
+};
+
+/* ---------- Q2 C : Science Subjects, fill the blanks ---------- */
+RPW.rp_science = {
+ q:'Question 2, C',
+ file:'science-subjects.html',
+ title:'Complete the HTML code to get the output shown below and rewrite.',
+ output:'<div style="font-family:\'Times New Roman\',serif"><h1 style="margin:0 0 8px;font-size:1.5rem">Science Subjects</h1>'+
+   '<div style="margin-left:26px">I. Physics<br>II. Chemistry<br>III. Biology</div></div>'+
+   '<div class="dimnote" style="margin-top:6px">The browser tab reads "Ordered List"</div>',
+ observe:[
+  ['The markers are I, II, III','Capital Roman numbers, so <b>type="I"</b>. Small i would give i, ii, iii — a different answer.'],
+  ['There are numbers at all','So it is an <b>ordered</b> list, &lt;ol&gt;, not &lt;ul&gt;.'],
+  ['The tab says "Ordered List"','That is the &lt;title&gt; blank, not the heading blank. They are different things.'],
+  ['One blank sits just before &lt;/html&gt;','A blank at the very end of a code skeleton is almost always a <b>closing tag</b>. Here it is &lt;/body&gt;.']
+ ],
+ steps:[
+  {t:'Look at the gaps you are given',
+   d:'The paper hands you a skeleton with six blanks. Run it as-is: nothing sensible appears, because the list has no tag and the body is never closed.',
+   code:'<html>\n<head>\n<title> ________ </title>\n________\n<body>\n<h1> ________ </h1>\n<ol type = ________>\n<li> Physics\n<li> ________\n<li> Biology\n</ol>\n________\n</html>'},
+  {t:'Blank 1 and 2 — the title and the closing head',
+   d:'The tab reads <b>Ordered List</b>, so that is the title. The blank on the next line comes straight after the title and before &lt;body&gt; — it is <b>&lt;/head&gt;</b>.',
+   code:'<html>\n<head>\n<title> Ordered List </title>\n</head>\n<body>\n<h1> ________ </h1>\n<ol type = ________>\n<li> Physics\n<li> ________\n<li> Biology\n</ol>\n________\n</html>'},
+  {t:'Blank 3 — the heading',
+   d:'The big text in the output is <b>Science Subjects</b>. Note it is different from the tab title — the paper does that deliberately.',
+   code:'<html>\n<head>\n<title> Ordered List </title>\n</head>\n<body>\n<h1> Science Subjects </h1>\n<ol type = ________>\n<li> Physics\n<li> ________\n<li> Biology\n</ol>\n________\n</html>'},
+  {t:'Blank 4 — the type value',
+   d:'The markers are I, II, III — upper case Roman numbers — so the value is <b>"I"</b>. Run it and check the markers match the picture exactly.',
+   code:'<html>\n<head>\n<title> Ordered List </title>\n</head>\n<body>\n<h1> Science Subjects </h1>\n<ol type = "I">\n<li> Physics\n<li> ________\n<li> Biology\n</ol>\n________\n</html>'},
+  {t:'Blank 5 — the missing subject',
+   d:'The output lists Physics, <b>Chemistry</b>, Biology. The middle one is simply read off the picture.',
+   code:'<html>\n<head>\n<title> Ordered List </title>\n</head>\n<body>\n<h1> Science Subjects </h1>\n<ol type = "I">\n<li> Physics\n<li> Chemistry\n<li> Biology\n</ol>\n________\n</html>'},
+  {t:'Blank 6 — the closing tag',
+   d:'&lt;body&gt; was opened and never closed, so the last blank is <b>&lt;/body&gt;</b>. In a fill-the-blank question the final gap is nearly always a closing tag — check what is still open.',
+   code:'<html>\n<head>\n<title> Ordered List </title>\n</head>\n<body>\n<h1> Science Subjects </h1>\n<ol type = "I">\n<li> Physics\n<li> Chemistry\n<li> Biology\n</ol>\n</body>\n</html>'}
+ ],
+ marks:[
+  '<b>Ordered List</b> in the title — taken from the browser tab, not the heading.',
+  '<b>&lt;/head&gt;</b> as the second blank.',
+  '<b>Science Subjects</b> as the heading.',
+  '<b>type = "I"</b> — capital I. A small i gives i, ii, iii and loses the mark.',
+  '<b>Chemistry</b> as the missing list item.',
+  '<b>&lt;/body&gt;</b> as the final blank.'
+ ]
+};
+
+/* ---------- Q1 C.3 : ordered / Roman ---------- */
+RPW.rp_ordered = {
+ q:'Question 1, C.3',
+ file:'fix-ordered.html',
+ title:'Study the following HTML code. Identify the error and rewrite the corrected code. &nbsp; <code>&lt;ordered type = "Roman"&gt;</code>',
+ output:'<div style="font-family:\'Times New Roman\',serif;margin-left:20px">I. First item<br>II. Second item<br>III. Third item</div>'+
+   '<div class="dimnote" style="margin-top:6px">What the line was trying to produce</div>',
+ observe:[
+  ['&lt;ordered&gt; is not an HTML tag','The tag for an ordered list is the two-letter abbreviation <b>&lt;ol&gt;</b>. Writing the word out does nothing.'],
+  ['"Roman" is not a type value','The five legal values are <b>A, a, I, i and 1</b>. For Roman numbers you use the letter I, not the word.'],
+  ['So there are two separate errors','A wrong tag name and a wrong attribute value — and the question is worth the marks for spotting both.']
+ ],
+ steps:[
+  {t:'See what the wrong code does',
+   d:'Run it. There is <b>no list at all</b> — just three lines of plain text. The browser met a tag it did not recognise and ignored it completely.',
+   code:'<html>\n<body>\n\n<ordered type = "Roman">\n<li>First item\n<li>Second item\n<li>Third item\n</ordered>\n\n</body>\n</html>'},
+  {t:'Fix the tag name',
+   d:'Change <b>&lt;ordered&gt;</b> to <b>&lt;ol&gt;</b> — and remember the closing tag too, &lt;/ol&gt;. Run it: numbers appear, but they are 1, 2, 3.',
+   code:'<html>\n<body>\n\n<ol type = "Roman">\n<li>First item\n<li>Second item\n<li>Third item\n</ol>\n\n</body>\n</html>'},
+  {t:'Fix the type value',
+   d:'"Roman" is not a value the browser knows, so it fell back to the default of 1. Replace it with the capital letter <b>"I"</b>.',
+   code:'<html>\n<body>\n\n<ol type = "I">\n<li>First item\n<li>Second item\n<li>Third item\n</ol>\n\n</body>\n</html>'},
+  {t:'Compare I with i',
+   d:'Now switch the capital I to a small <b>i</b> and run it. You get i, ii, iii instead. Same attribute, different case, different answer — which is exactly why examiners like this question.',
+   code:'<html>\n<body>\n\n<p>Capital I:</p>\n<ol type = "I">\n<li>First item\n<li>Second item\n</ol>\n\n<p>Small i:</p>\n<ol type = "i">\n<li>First item\n<li>Second item\n</ol>\n\n</body>\n</html>'}
+ ],
+ marks:[
+  'Naming both errors: the <b>tag should be &lt;ol&gt;</b> and the <b>type value should be "I"</b>.',
+  'Rewriting the line as <code>&lt;ol type = "I"&gt;</code>.',
+  'Knowing that type values are <b>case sensitive</b> — I and i give different outputs.'
+ ]
+};
+
+/* ---------- Q1 C.2 : image / img ---------- */
+RPW.rp_image = {
+ q:'Question 1, C.2',
+ file:'fix-img.html',
+ title:'Study the following HTML code. Identify the error and rewrite the corrected code. &nbsp; <code>&lt;image src = "image.png"&gt;</code>',
+ output:'<div class="dimnote">The line was meant to place a picture on the page.</div>',
+ observe:[
+  ['&lt;image&gt; is not an HTML tag','The tag is the three-letter abbreviation <b>&lt;img&gt;</b>. This is the single commonest tag-name mistake in the paper.'],
+  ['The src part is perfectly fine','src = "image.png" is correct. Only the tag name is wrong — do not "fix" what is already right.'],
+  ['It is an empty tag','So the corrected line has <b>no closing tag</b>. Adding &lt;/img&gt; turns one error into two.']
+ ],
+ steps:[
+  {t:'See what the wrong code does',
+   d:'Run it. <b>Nothing appears.</b> The browser does not know the tag &lt;image&gt;, so it ignores the whole line — not even the alt text shows.',
+   code:'<html>\n<body>\n\n<p>Above the picture</p>\n<image src = "mine.jpg">\n<p>Below the picture</p>\n\n</body>\n</html>'},
+  {t:'Change image to img',
+   d:'Three letters: <b>&lt;img&gt;</b>. Run it now — the picture appears immediately. That is the entire fix.',
+   code:'<html>\n<body>\n\n<p>Above the picture</p>\n<img src = "mine.jpg">\n<p>Below the picture</p>\n\n</body>\n</html>'},
+  {t:'Do not add a closing tag',
+   d:'&lt;img&gt; is an <b>empty tag</b>. Adding &lt;/img&gt; here would be a second error. The image tag is finished the moment you close the angle bracket.',
+   code:'<html>\n<body>\n\n<p>Above the picture</p>\n<img src = "mine.jpg">\n<p>Below the picture</p>\n\n</body>\n</html>'},
+  {t:'Good practice — add alt as well',
+   d:'The question does not ask for it, but a real page should always have <b>alt</b>. Break the file name on purpose and you will see the alt text take over.',
+   code:'<html>\n<body>\n\n<p>Above the picture</p>\n<img src = "mine.jpg" alt = "My Minecraft world">\n<p>Below the picture</p>\n\n</body>\n</html>'}
+ ],
+ marks:[
+  'Naming the error: <b>&lt;image&gt; is not a valid tag; it should be &lt;img&gt;</b>.',
+  'Rewriting the line as <code>&lt;img src = "image.png"&gt;</code>.',
+  'Leaving it as an <b>empty tag</b>, with no closing tag added.'
+ ]
+};
+
+/* ---------- Q2 A.4 : the alt attribute ---------- */
+RPW.rp_alt = {
+ q:'Question 2, A.4',
+ file:'alt-attribute.html',
+ title:'A student writes the following code: <code>&lt;img src="computer.jpg" alt="Computer Lab"&gt;</code> &mdash; (a) If the image is unavailable, what role does the alt attribute play? (b) Why is it useful on a webpage?',
+ output:'<div class="dimnote">Two versions of the same line — one where the file exists, one where it does not.</div>',
+ observe:[
+  ['There are two attributes doing two jobs','<b>src</b> names the file to fetch. <b>alt</b> holds text to use if that fetch fails.'],
+  ['The question says "if the image is unavailable"','So the answer is about what happens <b>when src fails</b> — a slow connection, or an error in the src attribute.'],
+  ['Part (b) asks "why is it useful"','A separate mark. It is useful because the visitor still gets a <b>description of the picture</b> instead of a blank space.']
+ ],
+ steps:[
+  {t:'A working image first',
+   d:'Here the file exists, so the picture appears and the alt text stays hidden. alt is a <b>backup</b>, not a caption — you do not normally see it.',
+   code:'<html>\n<body>\n\n<p>The file exists, so the picture is shown:</p>\n<img src="mine.jpg" alt="Computer Lab" width="220">\n\n</body>\n</html>'},
+  {t:'Now break the file name',
+   d:'Change the src to a file that does not exist. The picture vanishes and the <b>alt text appears in its place</b>. That is the whole answer to part (a).',
+   code:'<html>\n<body>\n\n<p>The file is missing, so the alt text takes over:</p>\n<img src="computer.jpg" alt="Computer Lab" width="220">\n\n</body>\n</html>'},
+  {t:'See why it matters — remove alt',
+   d:'With no alt attribute and a broken src, the visitor gets <b>nothing at all</b>. No picture, no explanation, no idea what was meant to be there. That is the answer to part (b).',
+   code:'<html>\n<body>\n\n<p>No alt attribute and a missing file:</p>\n<img src="computer.jpg" width="220">\n<p>Nothing above this line tells you what was supposed to be shown.</p>\n\n</body>\n</html>'},
+  {t:'Both side by side',
+   d:'The left one has alt, the right one does not. Same broken file, very different experience. Remember: alt takes a text string of up to <b>1024 characters</b>.',
+   code:'<html>\n<body>\n\n<p><b>With alt:</b></p>\n<img src="computer.jpg" alt="Computer Lab" width="200">\n\n<p><b>Without alt:</b></p>\n<img src="computer.jpg" width="200">\n\n</body>\n</html>'}
+ ],
+ marks:[
+  '(a) The alt attribute <b>displays the alternative text "Computer Lab"</b> when the image cannot be displayed.',
+  '(b) It is useful because the alternative text is shown when the browser <b>cannot display or load the image</b>, so the visitor still gets a description.',
+  'Bonus knowledge: the value may be up to <b>1024 characters</b>, in quotation marks if it contains spaces.'
+ ]
+};
+
+/* ---------- Q2 A.5 : href and src swapped ---------- */
+RPW.rp_swap = {
+ q:'Question 2, A.5',
+ file:'fix-swap.html',
+ title:'A student wants to display an image named school.jpg and make it a link to school.html. However, the image does not appear. <code>&lt;a href="school.jpg"&gt;&lt;img src="school.html"&gt;&lt;/a&gt;</code>',
+ output:'<div class="dimnote">A picture you can click, which opens another page.</div>',
+ observe:[
+  ['The anchor has been given a .jpg','href says <b>where to travel</b>. Travelling to a photograph makes no sense.'],
+  ['The img has been given a .html','src says <b>what to display here</b>. You cannot display a web page as if it were a picture, so nothing appears.'],
+  ['Neither attribute is misspelled','Both are real attributes, correctly spelled. Their <b>values have been swapped</b> — that is the whole error.']
+ ],
+ steps:[
+  {t:'See the broken version',
+   d:'Run it. There is a small broken-image marker and nothing else useful. The link technically works, but it leads to a picture file rather than a page.',
+   code:'<html>\n<body>\n\n<a href="school.jpg">\n<img src="school.html">\n</a>\n\n</body>\n</html>'},
+  {t:'Remember which does which',
+   d:'<b>src = show me this here.</b> &nbsp; <b>href = take me there.</b> Read the two values and ask which one you would want to <i>look at</i>, and which one you would want to <i>go to</i>.',
+   code:'<html>\n<body>\n\n<p>src shows a picture here:</p>\n<img src="mine.jpg" width="160">\n\n<p>href takes you somewhere:</p>\n<a href="school.html">Go to the school page</a>\n\n</body>\n</html>'},
+  {t:'Swap the two values back',
+   d:'The picture file <b>school.jpg</b> belongs in src. The page <b>school.html</b> belongs in href. Nothing else changes.',
+   code:'<html>\n<body>\n\n<a href="school.html">\n<img src="school.jpg">\n</a>\n\n</body>\n</html>'},
+  {t:'Prove it with a real picture',
+   d:'Here is the same corrected structure using a file that actually exists, so you can see a working clickable image. The shape of the code is identical.',
+   code:'<html>\n<body>\n\n<p>Click the picture:</p>\n<a href="school.html">\n<img src="mine.jpg" alt="My world" width="200">\n</a>\n\n</body>\n</html>'}
+ ],
+ marks:[
+  '(a) The values of the <b>href and src attributes have been interchanged</b>.',
+  '(b) The corrected code, with school.html in href and school.jpg in src.',
+  '(c) The <b>src</b> attribute specifies the image file.',
+  '(d) The <b>href</b> attribute specifies the destination of the hyperlink.'
+ ]
+};
+
+/* ---------- Q2 A.2 : the marquee ---------- */
+RPW.rp_marquee = {
+ q:'Question 2, A.2',
+ file:'sale-marquee.html',
+ title:'An e-commerce website wants to display "END OF SEASON SALE" as a scrolling text on their website. Write the code to display the above output.',
+ output:'<div class="dimnote">Text that travels across the page by itself.</div>',
+ observe:[
+  ['The key word is "scrolling"','Only one tag in this chapter scrolls text: <b>&lt;marquee&gt;</b>.'],
+  ['No speed, colour or direction is mentioned','So <b>no attributes are needed</b>. Adding them is not wrong, but the marks are for the tag and the text.'],
+  ['It is a container tag','The text goes <b>between</b> the opening and closing tags, and &lt;/marquee&gt; must be there.']
+ ],
+ steps:[
+  {t:'The full-mark answer is one line',
+   d:'Open the tag, put the text inside, close the tag. That is the complete answer the key gives: <code>&lt;marquee&gt; END OF SEASON SALE &lt;/marquee&gt;</code>',
+   code:'<html>\n<body>\n\n<marquee> END OF SEASON SALE </marquee>\n\n</body>\n</html>'},
+  {t:'Watch out for the closing tag',
+   d:'Delete the &lt;/marquee&gt; and run it. The text still scrolls — the browser repairs it — but the examiner marks what you wrote, and a missing closing tag costs the mark.',
+   code:'<html>\n<body>\n\n<marquee> END OF SEASON SALE\n\n</body>\n</html>'},
+  {t:'If the question asks for more',
+   d:'When the question describes colour, direction or repeats, add those attributes. Here is the same sale banner with a red strip, bouncing, stopping after four passes.',
+   code:'<html>\n<body>\n\n<marquee behaviour="alternate" bgcolor="red" loop="4">\n<h2>END OF SEASON SALE</h2>\n</marquee>\n\n</body>\n</html>'},
+  {t:'And the sentence to remember',
+   d:'Marquee <b>is not a part of HTML5</b>, even though every browser still displays it. That exact sentence is its own one-mark question elsewhere in the paper.',
+   code:'<html>\n<body>\n\n<marquee> END OF SEASON SALE </marquee>\n\n<p>Note: the marquee tag is not a part of HTML5,\nbut browsers still display it.</p>\n\n</body>\n</html>'}
+ ],
+ marks:[
+  'The <b>&lt;marquee&gt;</b> tag, opened and closed.',
+  'The text <b>END OF SEASON SALE</b> placed between the tags.',
+  'Nothing else is required — the question describes no attributes.'
+ ]
+};
+
+/* ---------- Q2 A.1 : recipe, ol vs ul ---------- */
+RPW.rp_recipe = {
+ q:'Question 2, A.1',
+ file:'recipe.html',
+ title:'Your friend is creating a recipe website. She wants to display the steps of the chocolate cake recipe in order. (a) Which HTML list tag will she use? (b) If she wanted to just list ingredients (not in order), which tag should she use?',
+ output:'<div class="dimnote">One recipe, two lists, two different tags.</div>',
+ observe:[
+  ['Part (a) says "in order"','Steps must be followed in sequence, so it is the <b>ordered</b> list, &lt;ol&gt;.'],
+  ['Part (b) says "not in order"','Ingredients can be read in any sequence, so it is the <b>unordered</b> list, &lt;ul&gt;.'],
+  ['The same recipe needs both','This is the clearest example in the whole paper of why the two list types exist.']
+ ],
+ steps:[
+  {t:'The steps — an ordered list',
+   d:'Your book puts it plainly: in a recipe, if the steps are not demonstrated orderly, the end result would not be as desired. That is why <b>&lt;ol&gt;</b> is the answer to (a).',
+   code:'<html>\n<head><title>Chocolate Cake</title></head>\n<body>\n\n<h2>Method</h2>\n<ol>\n<li>Mix the flour and sugar\n<li>Beat in the eggs\n<li>Pour into the tin\n<li>Bake for 30 minutes\n</ol>\n\n</body>\n</html>'},
+  {t:'The ingredients — an unordered list',
+   d:'Nobody needs the flour before the sugar; you just need to know what to buy. No sequence means <b>&lt;ul&gt;</b>, the answer to (b).',
+   code:'<html>\n<head><title>Chocolate Cake</title></head>\n<body>\n\n<h2>Ingredients</h2>\n<ul>\n<li>Flour\n<li>Sugar\n<li>Eggs\n<li>Cocoa powder\n</ul>\n\n</body>\n</html>'},
+  {t:'Both on one page',
+   d:'A real recipe page uses both, and each list keeps its own tag. Swap the two tags over and run it — numbered ingredients and bulleted steps look instantly wrong.',
+   code:'<html>\n<head><title>Chocolate Cake</title></head>\n<body>\n\n<h2>Ingredients</h2>\n<ul>\n<li>Flour\n<li>Sugar\n<li>Eggs\n<li>Cocoa powder\n</ul>\n\n<h2>Method</h2>\n<ol>\n<li>Mix the flour and sugar\n<li>Beat in the eggs\n<li>Pour into the tin\n<li>Bake for 30 minutes\n</ol>\n\n</body>\n</html>'}
+ ],
+ marks:[
+  '(a) She will use the <b>&lt;ol&gt;</b> tag of the ordered list.',
+  '(b) She should use the <b>&lt;ul&gt;</b> tag.',
+  'A reason earns credit too: steps have a required sequence, ingredients do not.'
+ ]
+};
+
+/* ---------- Q1 C.1 : bgcolour ---------- */
+RPW.rp_bgcolor = {
+ q:'Question 1, C.1',
+ file:'fix-bgcolor.html',
+ title:'Study the following HTML code. Identify the error and rewrite the corrected code. &nbsp; <code>&lt;body bgcolour = "blue"&gt;</code>',
+ output:'<div class="dimnote">The page was meant to have a blue background.</div>',
+ observe:[
+  ['The spelling is British','HTML always uses the American spelling: <b>bgcolor</b>, no u. The same trap appears again in Q1 C.4 with bordercolour.'],
+  ['Everything else is correct','bgcolour is one word, the equals sign and quotes are fine. Only the spelling is wrong.'],
+  ['A wrong attribute is ignored silently','The page stays white. Nothing warns you — which is why spelling mistakes survive until the exam.']
+ ],
+ steps:[
+  {t:'See what the wrong code does',
+   d:'Run it. The page is <b>still white</b>. The browser did not recognise "bgcolour" so it quietly ignored it. No error message, no clue.',
+   code:'<html>\n<body bgcolour = "blue">\n\n<h2>Is this page blue?</h2>\n<p>It should be. It is not.</p>\n\n</body>\n</html>'},
+  {t:'Drop the u',
+   d:'<b>bgcolour</b> becomes <b>bgcolor</b>. Run it — the page turns blue instantly. One letter was the whole problem.',
+   code:'<html>\n<body bgcolor = "blue">\n\n<h2>Is this page blue?</h2>\n<p>Yes. One letter made the difference.</p>\n\n</body>\n</html>'},
+  {t:'The same rule, everywhere',
+   d:'Every colour word in HTML uses the American spelling: bgcolor, bordercolor, and the CSS properties color and background-color. Learn it once and four questions become easy.',
+   code:'<html>\n<head>\n<style type="text/css">\nbody{background-color:lightyellow}\nh2{color:red}\n</style>\n</head>\n<body>\n\n<h2>CSS uses the same spelling</h2>\n<table border="2" bordercolor="green">\n<tr><td>And so does this</td></tr>\n</table>\n\n</body>\n</html>'}
+ ],
+ marks:[
+  'Naming the error: <b>the attribute is spelled bgcolour instead of bgcolor</b>.',
+  'Rewriting the line as <code>&lt;body bgcolor = "blue"&gt;</code>.',
+  'Changing nothing else.'
+ ]
+};
+
+/* ==========================================================
+   REVIEW PAPER WALKTHROUGH
+   A question from the real paper, built up one step at a time.
+   ========================================================== */
+function buildRPW(host){
+  var key = host.dataset.w, w = RPW[key];
+  if (!w){ host.innerHTML = '<p style="padding:12px">Walkthrough not found: '+key+'</p>'; return; }
+  host.dataset.built = '1';
+
+  var obs = w.observe.map(function(o){
+    return '<div class="rpo"><span class="rpoi">&#128065;</span><div><b>'+o[0]+'</b><br><span class="dimnote">'+o[1]+'</span></div></div>';
+  }).join('');
+
+  var marks = w.marks.map(function(m){ return '<li>'+m+'</li>'; }).join('');
+
+  host.innerHTML =
+    '<div class="rpwhead">'+
+      '<div class="rpwtag">&#9998; FROM THE REVIEW PAPER &middot; '+w.q+'</div>'+
+      '<div class="rpwq">'+w.title+'</div>'+
+    '</div>'+
+    '<div class="rpwbody">'+
+      '<div class="rpwsec"><span class="rpwlabel">The output you are given</span>'+
+        '<div class="outbox rpwout">'+w.output+'</div></div>'+
+      '<div class="rpwsec"><span class="rpwlabel">Step 0 &middot; Read the picture before you write anything</span>'+
+        '<div class="rpobs">'+obs+'</div></div>'+
+      '<div class="rpwsec"><span class="rpwlabel">Now build it, one step at a time</span>'+
+        '<div class="rpwsteps"></div>'+
+        '<div class="rpwpad"></div>'+
+        '<div class="rpwnav">'+
+          '<button class="btn b" data-a="next">Next step &#9654;</button>'+
+          '<button class="btn gh" data-a="back">&#9664; Back</button>'+
+          '<button class="btn gh" data-a="restart">Start over</button>'+
+          '<span class="rpwcount"></span>'+
+        '</div></div>'+
+      '<div class="rpwsec"><span class="rpwlabel">What earns the marks</span>'+
+        '<ul class="rpwmarks">'+marks+'</ul></div>'+
+    '</div>';
+
+  var padHost = host.querySelector('.rpwpad');
+  padHost.className = 'pad rpwpad';
+  padHost.dataset.s = '__rpw_' + key;
+  SAMPLES['__rpw_'+key] = {f:w.file, c:w.steps[0].code};
+  buildPad(padHost);
+
+  var ta = padHost.querySelector('.padta');
+  var fr = padHost.querySelector('.padframe');
+  var i = 0;
+
+  function render(){
+    var s = w.steps[i];
+    host.querySelector('.rpwsteps').innerHTML =
+      '<div class="rpwstep"><span class="rpwsn">'+(i+1)+'</span><div><b>'+s.t+'</b><br>'+s.d+'</div></div>';
+    ta.value = s.code;
+    fr.srcdoc = withImages(s.code);
+    host.querySelector('.rpwcount').textContent = 'Step '+(i+1)+' of '+w.steps.length;
+    var nb = host.querySelector('[data-a="next"]');
+    nb.textContent = (i === w.steps.length-1) ? '✓ Finished' : 'Next step ▶';
+    nb.disabled = (i === w.steps.length-1);
+    host.querySelector('[data-a="back"]').disabled = (i === 0);
+    host.classList.toggle('done', i === w.steps.length-1);
+  }
+  host.querySelector('.rpwnav').addEventListener('click', function(e){
+    var b = e.target.closest('.btn'); if (!b) return;
+    var a = b.dataset.a;
+    if (a === 'next' && i < w.steps.length-1){ i++; render(); if (i===w.steps.length-1){ spark(30); score(true, 6); } }
+    else if (a === 'back' && i > 0){ i--; render(); }
+    else if (a === 'restart'){ i = 0; render(); }
+  });
+  render();
+}
+function refreshRPW(){
+  var hs = document.querySelectorAll('.rpw:not([data-built])');
+  for (var i=0;i<hs.length;i++) if (hs[i].offsetParent !== null) buildRPW(hs[i]);
+}
+
 /* ==========================================================
    SCENARIO DRILL (virus chapter)
    ========================================================== */
@@ -5591,7 +6121,9 @@ function refreshScen(){
 
 /* pads and tasks refresh together */
 var _rp = refreshPads;
-refreshPads = function(){ _rp(); refreshTasks(); if (typeof refreshScen === 'function') refreshScen(); };
+refreshPads = function(){ _rp(); refreshTasks();
+  if (typeof refreshScen === 'function') refreshScen();
+  if (typeof refreshRPW === 'function') refreshRPW(); };
 
 function shuffle(a){ a=a.slice(); for(var i=a.length-1;i>0;i--){var j=Math.floor(Math.random()*(i+1)),t=a[i];a[i]=a[j];a[j]=t;} return a; }
 function esc(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
