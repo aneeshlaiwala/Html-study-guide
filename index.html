@@ -364,6 +364,87 @@ select.sel{font-family:var(--ui);font-weight:600}
   .paperhead{border-color:#000}
 }
 
+
+/* ================= interactive review paper ================= */
+.pq{position:relative}
+.pq .qbody{max-width:66ch}
+.pqopts{display:grid;gap:6px;margin:11px 0 2px;max-width:640px}
+.pqopts.o4{grid-template-columns:1fr 1fr;gap:6px 12px}
+.pqopts .opt{width:100%}
+.pqopts .opt .ot{flex:1}
+.pq .ansrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0 0}
+.pq .ain{
+  flex:1 1 300px;min-width:200px;background:var(--paper);border:1.5px solid var(--line2);
+  border-radius:8px;padding:9px 12px;font-family:var(--ui);font-size:.95rem;color:var(--ink);
+}
+.pq .ain.mono{font-family:var(--mono);font-size:.88rem}
+.pq .ain:focus{outline:none;border-color:var(--sky);box-shadow:0 0 0 3px rgba(47,122,214,.14)}
+.pq .ain.ok{border-color:var(--grass);background:var(--grass-l)}
+.pq .ain.no{border-color:var(--rose);background:var(--rose-l)}
+.pq .wans{
+  display:block;width:100%;max-width:720px;min-height:92px;resize:vertical;margin-top:10px;
+  background:var(--paper);border:1.5px solid var(--line2);border-radius:9px;padding:10px 13px;
+  font-family:var(--ui);font-size:.95rem;line-height:1.55;color:var(--ink);
+}
+.pq .wans:focus{outline:none;border-color:var(--sky);box-shadow:0 0 0 3px rgba(47,122,214,.14)}
+.btn.sm{padding:7px 13px;font-size:.85rem}
+.pq .pqpad{margin-top:11px}
+.pq.done{border-left:3px solid var(--grass);padding-left:13px}
+.pq.miss{border-left:3px solid var(--rose);padding-left:13px}
+
+/* key-idea checklist */
+.pq .mk{display:none;margin-top:11px;max-width:720px}
+.pq .mk.on{display:block}
+.pq .mk .mkh{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--ink2);
+  font-weight:800;margin:0 0 7px}
+.pq .mk ul{list-style:none;margin:0 0 10px;padding:0;display:grid;gap:5px}
+.pq .mk li{display:flex;gap:9px;align-items:flex-start;font-size:.91rem;line-height:1.45;
+  padding:6px 10px;border-radius:7px;background:var(--wash)}
+.pq .mk li .i{font-weight:800;flex:none;width:1.1em;text-align:center}
+.pq .mk li.hit{background:var(--grass-l);color:var(--grass-d)}
+.pq .mk li.hit .i{color:var(--grass)}
+.pq .mk li.gap{background:var(--rose-l);color:#A6231C}
+.pq .mk li.gap .i{color:var(--rose)}
+.pq .mk .selfrow{display:flex;flex-wrap:wrap;gap:8px;align-items:center;
+  border-top:1px dashed var(--line2);padding-top:10px;margin-top:2px}
+.pq .mk .selfrow .lb{font-size:.86rem;color:var(--ink2);margin-right:2px}
+.pq .mk .sfb{font-size:.88rem;font-weight:700;color:var(--grass-d)}
+
+/* scoreboard */
+.pscore{
+  background:var(--paper);border:1px solid var(--line);border-radius:var(--r);
+  padding:14px 16px 12px;margin:14px 0 22px;
+}
+.psbar{height:9px;border-radius:99px;background:var(--wash);overflow:hidden;margin-bottom:11px}
+.psbar i{display:block;height:100%;width:0;border-radius:99px;
+  background:linear-gradient(90deg,var(--sky),var(--grass));transition:width .45s cubic-bezier(.2,.8,.2,1)}
+.psmeta{display:flex;flex-wrap:wrap;gap:10px 26px}
+.psmeta .pm{display:flex;flex-direction:column;gap:1px}
+.psmeta .pm b{font-family:var(--mono);font-size:1.22rem;font-weight:800;color:var(--ink);line-height:1.1;white-space:nowrap}
+.psmeta .pm b i{font-style:normal}
+.psmeta .pm b .a,.psmeta .pm b .mks{color:var(--ink)}
+.psmeta .pm em{font-style:normal;font-size:.7rem;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--ink2);font-weight:700}
+.psweak{margin-top:11px;font-size:.87rem;line-height:1.5;color:var(--ink2);display:none}
+.psweak.on{display:block}
+.psweak b{color:var(--ink)}
+.psweak ul{margin:5px 0 0;padding-left:18px}
+
+@media (max-width:640px){
+  .pqopts.o4{grid-template-columns:1fr}
+  .pq .ansrow{gap:6px}
+  .pq .ain{flex:1 1 100%}
+  .psmeta{gap:10px 18px}
+  .psmeta .pm b{font-size:1.05rem}
+}
+@media print{
+  .pq .ansrow,.pq .wans,.pq .pqpad,.pq .mk,.fb,.pscore{display:none!important}
+  .pq.done,.pq.miss{border-left:0;padding-left:0}
+  .pqopts .opt{border:0;background:none!important;color:#000!important;padding:1px 0;
+    display:inline-flex;width:auto;margin-right:20px}
+  .pqopts{display:block}
+}
+
 /* ---------- definitions ---------- */
 .dsearch{margin:18px 0 8px}
 .dsearch input{
@@ -3335,18 +3416,22 @@ Table 2:  table{border-collapse:separate; border-spacing:10px 20px}</div>
   </div>
 
   <h3 class="head">How to use these</h3>
+  <div class="box g center" style="margin-bottom:14px">
+    <p style="margin:0"><b>These papers are now marked for you.</b> 54 questions across the two sets, 64 marks each, every one answerable on screen with instant right/wrong and the reasoning.</p>
+  </div>
   <div class="box b">
     <ol style="margin-bottom:0">
-      <li>Sit with paper and a pen. Do not open any answer until you have written yours.</li>
-      <li>Do a whole paper in one sitting, with the notes closed.</li>
-      <li>Then press <b>Show answer</b> question by question and mark yourself honestly.</li>
-      <li>Every code answer opens in a <b>live panel</b> &mdash; run it, then break it, so the correction sticks.</li>
-      <li>Anything you missed, go back to that module and redo its build task.</li>
+      <li><b>Answer every question inside the paper.</b> Tap an option, type into the box, or write the code in the live editor &mdash; then press Check. You are told at once whether it is right, and why.</li>
+      <li>Do a whole paper in one sitting, with the notes closed. Resist opening an answer before you have committed to one.</li>
+      <li>For the long answers, type what you would write in the exam. The paper lists the <b>key ideas the examiner is looking for</b> and ticks off the ones you actually wrote.</li>
+      <li>Every write-the-code question is a <b>live editor</b> &mdash; run it, see the real output, and keep fixing until it passes.</li>
+      <li>Watch the <b>score strip</b> at the top. When you finish it names the sections that cost you the most marks &mdash; go back to those modules and redo their build tasks.</li>
+      <li><b>Start a fresh attempt</b> wipes the paper clean so you can sit it again in a few days.</li>
     </ol>
   </div>
   <div class="box g">
     <span class="tag">&#128438; PRINTING</span>
-    <p style="margin:0">Use your browser's Print command. Hidden answers stay hidden in the printout, so you get a clean question paper to write on.</p>
+    <p style="margin:0">Use <b>Print a blank copy</b>. Answers, feedback and the editors are all stripped out, so you get a clean question paper to write on with a pen — then come back and key your answers in to have them marked.</p>
   </div>
 
   <div class="row"><button class="btn" onclick="go('rp1')">Open Review Paper 1</button><button class="btn gh" onclick="go('rp2')">Open Review Paper 2</button></div>
@@ -3359,98 +3444,48 @@ Table 2:  table{border-collapse:separate; border-spacing:10px 20px}</div>
     <div class="ph-title">FIRST TERM REVIEW PAPER &mdash; PRACTICE SET 1</div>
     <div class="ph-meta"><span>Std. 7</span><span>Ch. 8 HTML &amp; Ch. 3 Computer Virus</span></div>
   </div>
-  <div class="row"><button class="btn gh" onclick="allAns('rp1',true)">Show all answers</button><button class="btn gh" onclick="allAns('rp1',false)">Hide all answers</button><button class="btn gh" onclick="window.print()">Print this paper</button></div>
+  <div class="row"><button class="btn go" onclick="pqReset('rp1')">Start a fresh attempt</button><button class="btn gh" onclick="allAns('rp1',true)">Show all answers</button><button class="btn gh" onclick="allAns('rp1',false)">Hide all answers</button><button class="btn gh" onclick="window.print()">Print a blank copy</button></div>
   <p class="dimnote">Every question carries a small tag showing where that pattern was seen before.</p>
+  <div class="pscore" id="ps-rp1" data-nq="27" data-mm="64"><div class="psbar"><i></i></div><div class="psmeta"><span class="pm"><b><i class="a">0</i>/27</b><em>answered</em></span><span class="pm"><b class="c">0</b><em>right first try</em></span><span class="pm"><b><i class="mks">0</i>/64</b><em>marks</em></span><span class="pm"><b class="pc">0%</b><em>score</em></span></div><div class="psweak"></div></div>
+
 
   <h3 class="head">Question 1</h3>
   <h4 class="sub">A. Choose the correct answers to the questions from the given options.</h4>
   <p class="qnote">(Do not copy the questions, write only the correct answers.)</p>
 
-  <div class="qq"><span class="why">Seen in: real paper Q1A1 &middot; picture-based type question</span>
-    <p><b>1.</b> Evaluate the following HTML code. The ________ attribute of the ol tag will display the result as per the picture given below:</p>
-    <div class="outbox"><div style="margin-left:18px;font-family:'Times New Roman',serif">5. Mercury<br>4. Venus<br>3. Earth</div></div>
-    <p class="opts4"><span>(a) start</span><span>(b) type</span><span>(c) reversed</span><span>(d) source</span></p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>(c) reversed &mdash; the numbering runs <b>downwards</b>, and only the reversed attribute does that. The full code is <code class="t">&lt;ol start=5 reversed&gt;</code>.</div></div>
+  <div class="qq pq" id="q-rp1-1" data-q="rp1-1" data-p="rp1" data-t="mcq" data-m="1" data-sec="Q1 A · Multiple choice" data-a="c"><span class="why">Seen in: real paper Q1A1 &middot; picture-based type question</span><div class="qbody"><p><b>1.</b> Evaluate the following HTML code. The ________ attribute of the ol tag will display the result as per the picture given below:</p>
+    <div class="outbox"><div style="margin-left:18px;font-family:'Times New Roman',serif">5. Mercury<br>4. Venus<br>3. Earth</div></div></div><div class="pqopts o4"><button class="opt" data-k="a"><span class="k">a</span><span class="ot">start</span></button><button class="opt" data-k="b"><span class="k">b</span><span class="ot">type</span></button><button class="opt" data-k="c"><span class="k">c</span><span class="ot">reversed</span></button><button class="opt" data-k="d"><span class="k">d</span><span class="ot">source</span></button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>(c) reversed &mdash; the numbering runs <b>downwards</b>, and only the reversed attribute does that. The full code is <code class="t">&lt;ol start=5 reversed&gt;</code>.</div></div>
 
-  <div class="qq"><span class="why">Seen in: real paper Q1A2 &middot; assertion&ndash;reason on spyware</span>
-    <p><b>2.</b> <b>Assertion (A):</b> A Trojan horse does not make copies of itself.<br>
+  <div class="qq pq" id="q-rp1-2" data-q="rp1-2" data-p="rp1" data-t="mcq" data-m="1" data-sec="Q1 A · Multiple choice" data-a="b"><span class="why">Seen in: real paper Q1A2 &middot; assertion&ndash;reason on spyware</span><div class="qbody"><p><b>2.</b> <b>Assertion (A):</b> A Trojan horse does not make copies of itself.<br>
     <b>Reason (R):</b> A Trojan horse requires human action to run.<br>
-    Based on the above discussion, choose an appropriate statement from the options given below:</p>
-    <p class="opts1"><span>(a) Both (A) and (R) are true and (R) is the correct explanation of (A).</span><span>(b) Both (A) and (R) are true and (R) is not the correct explanation of (A).</span><span>(c) (A) is true and (R) is false.</span><span>(d) (A) is false and (R) is true.</span></p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>(b) Both (A) and (R) are true and (R) is not the correct explanation of (A).<br>Both statements are true. But needing a human to run it is <b>not the reason</b> it cannot self-replicate &mdash; they are two separate facts about a Trojan, so (R) does not explain (A).</div></div>
+    Based on the above discussion, choose an appropriate statement from the options given below:</p></div><div class="pqopts o1"><button class="opt" data-k="a"><span class="k">a</span><span class="ot">Both (A) and (R) are true and (R) is the correct explanation of (A).</span></button><button class="opt" data-k="b"><span class="k">b</span><span class="ot">Both (A) and (R) are true and (R) is not the correct explanation of (A).</span></button><button class="opt" data-k="c"><span class="k">c</span><span class="ot">(A) is true and (R) is false.</span></button><button class="opt" data-k="d"><span class="k">d</span><span class="ot">(A) is false and (R) is true.</span></button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>(b) Both (A) and (R) are true and (R) is not the correct explanation of (A).<br>Both statements are true. But needing a human to run it is <b>not the reason</b> it cannot self-replicate &mdash; they are two separate facts about a Trojan, so (R) does not explain (A).</div></div>
 
-  <div class="qq"><span class="why">Seen in: Ch 3 Brain Developer C1 &middot; real paper Q1A4</span>
-    <p><b>3.</b> Which virus infects the boot record or master boot record?</p>
-    <p class="opts4"><span>(a) Worm</span><span>(b) Boot sector virus</span><span>(c) Spyware</span><span>(d) Macro virus</span></p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>(b) Boot sector virus &mdash; the first sector of a disk is the boot sector, and it carries the master boot record responsible for loading the operating system.</div></div>
+  <div class="qq pq" id="q-rp1-3" data-q="rp1-3" data-p="rp1" data-t="mcq" data-m="1" data-sec="Q1 A · Multiple choice" data-a="b"><span class="why">Seen in: Ch 3 Brain Developer C1 &middot; real paper Q1A4</span><div class="qbody"><p><b>3.</b> Which virus infects the boot record or master boot record?</p></div><div class="pqopts o4"><button class="opt" data-k="a"><span class="k">a</span><span class="ot">Worm</span></button><button class="opt" data-k="b"><span class="k">b</span><span class="ot">Boot sector virus</span></button><button class="opt" data-k="c"><span class="k">c</span><span class="ot">Spyware</span></button><button class="opt" data-k="d"><span class="k">d</span><span class="ot">Macro virus</span></button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>(b) Boot sector virus &mdash; the first sector of a disk is the boot sector, and it carries the master boot record responsible for loading the operating system.</div></div>
 
-  <div class="qq"><span class="why">Seen in: Ch 8 Brain Developer C3 &middot; external image</span>
-    <p><b>4.</b> To insert an <b>external</b> image, which tag is used?</p>
-    <p class="opts4"><span>(a) &lt;Ext&gt;</span><span>(b) &lt;a&gt;</span><span>(c) &lt;img&gt;</span><span>(d) &lt;src&gt;</span></p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>(b) &lt;a&gt; &mdash; an external image is not displayed automatically; it is referenced externally and viewed separately by clicking a link, so the <b>anchor tag</b> establishes the link to it. The <code class="t">&lt;img&gt;</code> tag is for an <b>inline</b> image.</div></div>
+  <div class="qq pq" id="q-rp1-4" data-q="rp1-4" data-p="rp1" data-t="mcq" data-m="1" data-sec="Q1 A · Multiple choice" data-a="b"><span class="why">Seen in: Ch 8 Brain Developer C3 &middot; external image</span><div class="qbody"><p><b>4.</b> To insert an <b>external</b> image, which tag is used?</p></div><div class="pqopts o4"><button class="opt" data-k="a"><span class="k">a</span><span class="ot">&lt;Ext&gt;</span></button><button class="opt" data-k="b"><span class="k">b</span><span class="ot">&lt;a&gt;</span></button><button class="opt" data-k="c"><span class="k">c</span><span class="ot">&lt;img&gt;</span></button><button class="opt" data-k="d"><span class="k">d</span><span class="ot">&lt;src&gt;</span></button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>(b) &lt;a&gt; &mdash; an external image is not displayed automatically; it is referenced externally and viewed separately by clicking a link, so the <b>anchor tag</b> establishes the link to it. The <code class="t">&lt;img&gt;</code> tag is for an <b>inline</b> image.</div></div>
 
-  <div class="qq"><span class="why">Seen in: Ch 3 Brain Developer C3 &middot; naming antivirus software</span>
-    <p><b>5.</b> Which of the following is an example of antivirus software?</p>
-    <p class="opts4"><span>(a) Cascade</span><span>(b) Sunday</span><span>(c) Norton</span><span>(d) Nimda</span></p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>(c) Norton. Cascade and Sunday are program file viruses and Nimda is a network virus &mdash; the distractors are always <b>virus names</b>, so read carefully.</div></div>
+  <div class="qq pq" id="q-rp1-5" data-q="rp1-5" data-p="rp1" data-t="mcq" data-m="1" data-sec="Q1 A · Multiple choice" data-a="c"><span class="why">Seen in: Ch 3 Brain Developer C3 &middot; naming antivirus software</span><div class="qbody"><p><b>5.</b> Which of the following is an example of antivirus software?</p></div><div class="pqopts o4"><button class="opt" data-k="a"><span class="k">a</span><span class="ot">Cascade</span></button><button class="opt" data-k="b"><span class="k">b</span><span class="ot">Sunday</span></button><button class="opt" data-k="c"><span class="k">c</span><span class="ot">Norton</span></button><button class="opt" data-k="d"><span class="k">d</span><span class="ot">Nimda</span></button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>(c) Norton. Cascade and Sunday are program file viruses and Nimda is a network virus &mdash; the distractors are always <b>virus names</b>, so read carefully.</div></div>
 
   <h4 class="sub">B. Complete the following analogies and rewrite them.</h4>
-  <div class="qq"><span class="why">Seen in: real paper Q1B1 &middot; virus-type analogy</span>
-    <p><b>1.</b> Boot sector virus &mdash; infects hard disk :: ________ &mdash; infects executable files.</p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>Boot sector virus &mdash; infects hard disk :: <b>Program file virus</b> &mdash; infects executable files.</div></div>
-  <div class="qq"><span class="why">Seen in: real paper Q1B2 &middot; list analogy</span>
-    <p><b>2.</b> List in a sequence &mdash; ordered list :: ________ &mdash; unordered list.</p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>List in a sequence &mdash; ordered list :: <b>List not in a sequence</b> &mdash; unordered list.</div></div>
-  <div class="qq"><span class="why">Seen in: real paper Q1B3 &middot; table tag analogy</span>
-    <p><b>3.</b> &lt;tr&gt; tag &mdash; to begin a row in a table :: ________ tag &mdash; to specify heading in a table.</p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>&lt;tr&gt; tag &mdash; to begin a row in a table :: <b>&lt;th&gt;</b> tag &mdash; to specify heading in a table.</div></div>
+  <div class="qq pq" id="q-rp1-6" data-q="rp1-6" data-p="rp1" data-t="short" data-m="1" data-sec="Q1 B · Analogies" data-k='["program file virus", "program virus", "file virus", "program file viruses", "programme file virus", "executable file virus"]' data-h="Which virus type attaches itself to .exe and .com files?"><span class="why">Seen in: real paper Q1B1 &middot; virus-type analogy</span><div class="qbody"><p><b>1.</b> Boot sector virus &mdash; infects hard disk :: ________ &mdash; infects executable files.</p></div><div class="ansrow"><input class="ain" placeholder="Type the missing part" spellcheck="false"><button class="btn go sm" data-act="check">Check</button><button class="btn gh sm" data-act="hint">Hint</button><button class="btn gh sm" data-act="giveup">Show me</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>Boot sector virus &mdash; infects hard disk :: <b>Program file virus</b> &mdash; infects executable files.</div></div>
+  <div class="qq pq" id="q-rp1-7" data-q="rp1-7" data-p="rp1" data-t="short" data-m="1" data-sec="Q1 B · Analogies" data-k='["list not in a sequence", "list not in sequence", "not in a sequence", "not in sequence", "list which is not in a sequence", "list that is not in a sequence", "list not in any sequence", "list without a sequence", "list not in order", "list not in any order", "not in order"]' data-h="Describe the KIND of list, do not just name the tag."><span class="why">Seen in: real paper Q1B2 &middot; list analogy</span><div class="qbody"><p><b>2.</b> List in a sequence &mdash; ordered list :: ________ &mdash; unordered list.</p></div><div class="ansrow"><input class="ain" placeholder="Type the missing part" spellcheck="false"><button class="btn go sm" data-act="check">Check</button><button class="btn gh sm" data-act="hint">Hint</button><button class="btn gh sm" data-act="giveup">Show me</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>List in a sequence &mdash; ordered list :: <b>List not in a sequence</b> &mdash; unordered list.</div></div>
+  <div class="qq pq" id="q-rp1-8" data-q="rp1-8" data-p="rp1" data-t="short" data-m="1" data-sec="Q1 B · Analogies" data-k='["th", "<th>", "th tag", "<th> tag", "table heading", "table header"]' data-h="Just the tag name is enough."><span class="why">Seen in: real paper Q1B3 &middot; table tag analogy</span><div class="qbody"><p><b>3.</b> &lt;tr&gt; tag &mdash; to begin a row in a table :: ________ tag &mdash; to specify heading in a table.</p></div><div class="ansrow"><input class="ain" placeholder="Type the missing part" spellcheck="false"><button class="btn go sm" data-act="check">Check</button><button class="btn gh sm" data-act="hint">Hint</button><button class="btn gh sm" data-act="giveup">Show me</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>&lt;tr&gt; tag &mdash; to begin a row in a table :: <b>&lt;th&gt;</b> tag &mdash; to specify heading in a table.</div></div>
 
   <h4 class="sub">C. Study the following HTML code. Identify the error and rewrite the corrected code.</h4>
-  <div class="qq"><span class="why">Seen in: real paper Q1C1 &middot; attribute spelling</span>
-    <p><b>1.</b></p><div class="codeline">&lt;body bgcolour = "lightyellow"&gt;</div>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>The attribute uses the American spelling, <b>bgcolor</b>.<div class="codeline" style="margin-top:8px">&lt;body bgcolor = "lightyellow"&gt;</div></div></div>
-  <div class="qq"><span class="why">Seen in: real paper Q1C2 &middot; wrong tag name</span>
-    <p><b>2.</b></p><div class="codeline">&lt;image src = "bird.jpg"&gt;</div>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>The tag is <b>&lt;img&gt;</b>, not &lt;image&gt;.<div class="codeline" style="margin-top:8px">&lt;img src = "bird.jpg"&gt;</div></div></div>
-  <div class="qq"><span class="why">Seen in: Ch 8 Brain Developer D2 &middot; start must be a number</span>
-    <p><b>3.</b></p><div class="codeline">&lt;ol type = 'i' start = 'iii'&gt;</div>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>The <b>start</b> attribute must be given a <b>number</b>, even when the type is Roman. The type decides how the markers look; start decides where the counting begins.<div class="codeline" style="margin-top:8px">&lt;ol type = "i" start = "3"&gt;</div>The list then shows iii, iv, v.</div></div>
-  <div class="qq"><span class="why">Seen in: real paper Q1C4 &middot; bordercolor spelling</span>
-    <p><b>4.</b></p><div class="codeline">&lt;table border colour = "red"&gt;</div>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>It is <b>one word</b> with American spelling: <b>bordercolor</b>.<div class="codeline" style="margin-top:8px">&lt;table bordercolor = "red"&gt;</div></div></div>
+  <div class="qq pq" id="q-rp1-9" data-q="rp1-9" data-p="rp1" data-t="codefix" data-m="2" data-sec="Q1 C · Spot the error in the code" data-k='["<body bgcolor = \"lightyellow\">", "<body bgcolor=\"lightyellow\">"]'><span class="why">Seen in: real paper Q1C1 &middot; attribute spelling</span><div class="qbody"><p><b>1.</b></p><div class="codeline">&lt;body bgcolour = "lightyellow"&gt;</div></div><div class="ansrow"><input class="ain mono" placeholder="Rewrite the corrected code here" spellcheck="false"><button class="btn go sm" data-act="check">Check</button><button class="btn gh sm" data-act="giveup">Show me</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>The attribute uses the American spelling, <b>bgcolor</b>.<div class="codeline" style="margin-top:8px">&lt;body bgcolor = "lightyellow"&gt;</div></div></div>
+  <div class="qq pq" id="q-rp1-10" data-q="rp1-10" data-p="rp1" data-t="codefix" data-m="2" data-sec="Q1 C · Spot the error in the code" data-k='["<img src = \"bird.jpg\">", "<img src=\"bird.jpg\">", "<img src = \"bird.jpg\" />"]'><span class="why">Seen in: real paper Q1C2 &middot; wrong tag name</span><div class="qbody"><p><b>2.</b></p><div class="codeline">&lt;image src = "bird.jpg"&gt;</div></div><div class="ansrow"><input class="ain mono" placeholder="Rewrite the corrected code here" spellcheck="false"><button class="btn go sm" data-act="check">Check</button><button class="btn gh sm" data-act="giveup">Show me</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>The tag is <b>&lt;img&gt;</b>, not &lt;image&gt;.<div class="codeline" style="margin-top:8px">&lt;img src = "bird.jpg"&gt;</div></div></div>
+  <div class="qq pq" id="q-rp1-11" data-q="rp1-11" data-p="rp1" data-t="codefix" data-m="2" data-sec="Q1 C · Spot the error in the code" data-k='["<ol type = \"i\" start = \"3\">", "<ol type=\"i\" start=\"3\">", "<ol type = &#39;i&#39; start = &#39;3&#39;>", "<ol start = \"3\" type = \"i\">", "<ol type=\"i\" start=3>"]'><span class="why">Seen in: Ch 8 Brain Developer D2 &middot; start must be a number</span><div class="qbody"><p><b>3.</b></p><div class="codeline">&lt;ol type = 'i' start = 'iii'&gt;</div></div><div class="ansrow"><input class="ain mono" placeholder="Rewrite the corrected code here" spellcheck="false"><button class="btn go sm" data-act="check">Check</button><button class="btn gh sm" data-act="giveup">Show me</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>The <b>start</b> attribute must be given a <b>number</b>, even when the type is Roman. The type decides how the markers look; start decides where the counting begins.<div class="codeline" style="margin-top:8px">&lt;ol type = "i" start = "3"&gt;</div>The list then shows iii, iv, v.</div></div>
+  <div class="qq pq" id="q-rp1-12" data-q="rp1-12" data-p="rp1" data-t="codefix" data-m="2" data-sec="Q1 C · Spot the error in the code" data-k='["<table bordercolor = \"red\">", "<table bordercolor=\"red\">", "<table border bordercolor = \"red\">"]'><span class="why">Seen in: real paper Q1C4 &middot; bordercolor spelling</span><div class="qbody"><p><b>4.</b></p><div class="codeline">&lt;table border colour = "red"&gt;</div></div><div class="ansrow"><input class="ain mono" placeholder="Rewrite the corrected code here" spellcheck="false"><button class="btn go sm" data-act="check">Check</button><button class="btn gh sm" data-act="giveup">Show me</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>It is <b>one word</b> with American spelling: <b>bordercolor</b>.<div class="codeline" style="margin-top:8px">&lt;table bordercolor = "red"&gt;</div></div></div>
 
   <h4 class="sub">D. Correct the following incorrect statements and rewrite them.</h4>
-  <div class="qq"><span class="why">Seen in: real paper Q1D1 &middot; Ch 3 Brain Developer B3</span>
-    <p><b>1.</b> Trojan horses are self-replicating.</p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>Unlike viruses and worms, Trojan horses <b>do not reproduce by infecting other files nor do they self-replicate</b>; they require human action to run.</div></div>
-  <div class="qq"><span class="why">Seen in: Ch 8 Brain Developer B3 &middot; nesting reversed</span>
-    <p><b>2.</b> The &lt;tr&gt; tag must always be present inside the row tag &lt;td&gt;.</p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>It is the other way round: the <b>&lt;td&gt;</b> tag must always be present inside the row tag <b>&lt;tr&gt;</b>.</div></div>
+  <div class="qq pq" id="q-rp1-13" data-q="rp1-13" data-p="rp1" data-t="written" data-m="2" data-sec="Q1 D · Correct the wrong statement" data-kw='[["Trojans do NOT self-replicate", ["not self-replicat", "not selfreplicat", "do not replicat", "does not replicat", "dont replicat", "no self-replicat", "non-self-replicat", "cannot replicat", "not make copies", "no copies"]], ["they need human action to run", ["human", "user", "someone", "person", "manually", "has to run", "must be run", "has to be opened"]]]'><span class="why">Seen in: real paper Q1D1 &middot; Ch 3 Brain Developer B3</span><div class="qbody"><p><b>1.</b> Trojan horses are self-replicating.</p></div><textarea class="wans" spellcheck="true" placeholder="Write your answer here, the way you would write it in the exam..."></textarea><div class="ansrow"><button class="btn go sm" data-act="wcheck">Check my answer</button><button class="btn gh sm" data-act="wskip">I do not know &mdash; show the answer</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>Unlike viruses and worms, Trojan horses <b>do not reproduce by infecting other files nor do they self-replicate</b>; they require human action to run.</div></div>
+  <div class="qq pq" id="q-rp1-14" data-q="rp1-14" data-p="rp1" data-t="written" data-m="2" data-sec="Q1 D · Correct the wrong statement" data-kw='[["<td> is the data cell tag", ["td"]], ["<tr> is the row tag", ["tr"]], ["the td goes INSIDE the tr", ["inside", "within", "nested", "other way", "reverse"]]]'><span class="why">Seen in: Ch 8 Brain Developer B3 &middot; nesting reversed</span><div class="qbody"><p><b>2.</b> The &lt;tr&gt; tag must always be present inside the row tag &lt;td&gt;.</p></div><textarea class="wans" spellcheck="true" placeholder="Write your answer here, the way you would write it in the exam..."></textarea><div class="ansrow"><button class="btn go sm" data-act="wcheck">Check my answer</button><button class="btn gh sm" data-act="wskip">I do not know &mdash; show the answer</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>It is the other way round: the <b>&lt;td&gt;</b> tag must always be present inside the row tag <b>&lt;tr&gt;</b>.</div></div>
 
   <h4 class="sub">E. Evaluate the statement "Scanning a pen drive before opening it is more important than taking a daily backup." Give any two reasons to support your answer.</h4>
-  <div class="qq"><span class="why">Seen in: real paper Q1E &middot; evaluate-a-statement, two reasons</span>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>Both are important, but scanning <b>prevents</b> the problem while a backup only <b>limits the damage</b> afterwards.<br>1. Scanning a pen drive with an updated antivirus stops the infection <b>before</b> it enters the computer, and removable storage devices are one of the three main ways a virus spreads.<br>2. A backup does not stop an infection, and if infected files are copied into the backup, the backup itself becomes unsafe. A daily backup is still necessary as protection against data loss.</div></div>
+  <div class="qq pq" id="q-rp1-15" data-q="rp1-15" data-p="rp1" data-t="written" data-m="3" data-sec="Q1 E · Evaluate the statement" data-kw='[["scanning PREVENTS the infection", ["prevent", "stop", "before", "avoid", "block"]], ["a backup only limits the damage afterwards", ["backup", "back up", "back-up", "after", "recover", "restore", "damage"]], ["removable storage is a main way viruses spread", ["removable", "pen drive", "pendrive", "usb", "storage device", "external"]], ["a backup can itself become infected", ["infected backup", "backup becomes", "copied into", "also infected", "backup itself", "unsafe"]]]'><span class="why">Seen in: real paper Q1E &middot; evaluate-a-statement, two reasons</span><div class="qbody"></div><textarea class="wans" spellcheck="true" placeholder="Write your answer here, the way you would write it in the exam..."></textarea><div class="ansrow"><button class="btn go sm" data-act="wcheck">Check my answer</button><button class="btn gh sm" data-act="wskip">I do not know &mdash; show the answer</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>Both are important, but scanning <b>prevents</b> the problem while a backup only <b>limits the damage</b> afterwards.<br>1. Scanning a pen drive with an updated antivirus stops the infection <b>before</b> it enters the computer, and removable storage devices are one of the three main ways a virus spreads.<br>2. A backup does not stop an infection, and if infected files are copied into the backup, the backup itself becomes unsafe. A daily backup is still necessary as protection against data loss.</div></div>
 
   <h4 class="sub">F. A computer user installs a program that claims to improve computer performance. After installation, the program secretly performs harmful actions on the computer.</h4>
-  <div class="qq"><span class="why">Seen in: real paper Q1F &middot; three-part malware scenario</span>
-    <p><b>1.</b> Identify the type of malware involved.<br><b>2.</b> Explain how its method of operation differs from that of a Sweeper.<br><b>3.</b> State any one precaution the user should have taken.</p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>
+  <div class="qq pq" id="q-rp1-16" data-q="rp1-16" data-p="rp1" data-t="written" data-m="3" data-sec="Q1 F · Malware scenario" data-kw='[["it is a Trojan Horse", ["trojan"]], ["it pretends to be useful software", ["pretend", "disguis", "appear", "claim", "legitimate", "useful", "looks like", "seems"]], ["a Sweeper pretends to be an ANTIVIRUS", ["sweeper", "antivirus", "anti-virus", "fake"]], ["download only from a trusted source", ["trusted", "genuine", "reliable", "official", "authentic", "pirated"]]]'><span class="why">Seen in: real paper Q1F &middot; three-part malware scenario</span><div class="qbody"><p><b>1.</b> Identify the type of malware involved.<br><b>2.</b> Explain how its method of operation differs from that of a Sweeper.<br><b>3.</b> State any one precaution the user should have taken.</p></div><textarea class="wans" spellcheck="true" placeholder="Write your answer here, the way you would write it in the exam..."></textarea><div class="ansrow"><button class="btn go sm" data-act="wcheck">Check my answer</button><button class="btn gh sm" data-act="wskip">I do not know &mdash; show the answer</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>
       <b>1.</b> The malware involved is a <b>Trojan Horse</b>.<br>
       <b>2.</b> A Trojan Horse pretends to be a legitimate or useful program and tricks the user into installing it, whereas a <b>Sweeper</b> specifically acts like an <b>antivirus</b> program &mdash; and once downloaded it behaves like a virus, displaying a list of fake malware files to scare the user and harming the computer.<br>
       <b>3.</b> The user should have downloaded the program only from a <b>trusted source</b> and checked it with reliable antivirus software before installing it. Avoiding pirated software from the internet is also acceptable.</div></div>
@@ -3458,84 +3493,51 @@ Table 2:  table{border-collapse:separate; border-spacing:10px 20px}</div>
   <h3 class="head">Question 2</h3>
   <h4 class="sub">A. Analyse the scenarios given below and answer the following questions.</h4>
 
-  <div class="qq"><span class="why">Seen in: real paper Q2A1 &middot; which list tag</span>
-    <p><b>1.</b> Your friend is creating a recipe website. She wants to display the steps of the chocolate cake recipe in order.</p>
-    <p>(a) Which HTML list tag will she use?<br>(b) If she wanted to just list ingredients (not in order), which tag should she use?</p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>(a) She will use the <b>&lt;ol&gt;</b> tag of the ordered list, because the steps must be followed in a specific order.<br>(b) She should use the <b>&lt;ul&gt;</b> tag, since ingredients are not required in any particular sequence.</div></div>
+  <div class="qq pq" id="q-rp1-17" data-q="rp1-17" data-p="rp1" data-t="written" data-m="2" data-sec="Q2 A · Scenario questions" data-kw='[["<ol> for the numbered steps", ["ol"]], ["<ul> for the ingredients", ["ul"]], ["because steps must follow an order", ["order", "sequence", "sequen"]]]'><span class="why">Seen in: real paper Q2A1 &middot; which list tag</span><div class="qbody"><p><b>1.</b> Your friend is creating a recipe website. She wants to display the steps of the chocolate cake recipe in order.</p>
+    <p>(a) Which HTML list tag will she use?<br>(b) If she wanted to just list ingredients (not in order), which tag should she use?</p></div><textarea class="wans" spellcheck="true" placeholder="Write your answer here, the way you would write it in the exam..."></textarea><div class="ansrow"><button class="btn go sm" data-act="wcheck">Check my answer</button><button class="btn gh sm" data-act="wskip">I do not know &mdash; show the answer</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>(a) She will use the <b>&lt;ol&gt;</b> tag of the ordered list, because the steps must be followed in a specific order.<br>(b) She should use the <b>&lt;ul&gt;</b> tag, since ingredients are not required in any particular sequence.</div></div>
 
-  <div class="qq"><span class="why">Seen in: real paper Q2A2 &middot; write the marquee code</span>
-    <p><b>2.</b> A school website wants to display "ADMISSIONS OPEN" as a scrolling text that bounces from side to side and stops after 5 times. Write the code to display the above output.</p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span><div class="pad" data-s="rp1a2"></div>
+  <div class="qq pq" id="q-rp1-18" data-q="rp1-18" data-p="rp1" data-t="build" data-m="3" data-sec="Q2 A · Scenario questions" data-c="rp1_18"><span class="why">Seen in: real paper Q2A2 &middot; write the marquee code</span><div class="qbody"><p><b>2.</b> A school website wants to display "ADMISSIONS OPEN" as a scrolling text that bounces from side to side and stops after 5 times. Write the code to display the above output.</p></div><div class="pad pqpad" data-s="__pq_rp1_18"></div><div class="ansrow"><button class="btn go sm" data-act="bcheck">Check my code</button><button class="btn gh sm" data-act="bhint">Give me a nudge</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span><div class="pad" data-s="rp1a2"></div>
       <p style="margin-bottom:0">If the question only says "scrolling text", <code class="t">&lt;marquee&gt; ADMISSIONS OPEN &lt;/marquee&gt;</code> is the full-mark answer &mdash; attributes are only needed when the question describes them.</p></div></div>
 
-  <div class="qq"><span class="why">Seen in: Ch 3 Brain Developer D1 &middot; competency style</span>
-    <p><b>3.</b> Varsha's computer has got infected with a virus, resulting in its frequent hanging.</p>
-    <p>(a) Which software will you suggest she install in order to solve this problem?<br>(b) Name any two such programs.<br>(c) After installing it, what must she keep doing, and why?</p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>(a) She should install an <b>antivirus</b> program, which is designed to identify, prevent and remove viruses from a computer.<br>(b) Any two of: <b>McAfee, AVG Antivirus, Bitdefender, Microsoft Security Essentials, Norton Antivirus, Quick Heal</b>.<br>(c) She must <b>keep it updated</b>. Simply installing antivirus software does not guarantee 100% protection, because the installed program may not be able to detect new virus programs.</div></div>
+  <div class="qq pq" id="q-rp1-19" data-q="rp1-19" data-p="rp1" data-t="written" data-m="3" data-sec="Q2 A · Scenario questions" data-kw='[["install an antivirus", ["antivirus", "anti-virus", "anti virus"]], ["names two real antivirus programs", ["mcafee", "avg", "norton", "quick heal", "quickheal", "bitdefender", "kaspersky", "avast", "microsoft security", "defender"]], ["keep it UPDATED", ["updat"]], ["because new viruses appear all the time", ["new virus", "new type", "latest", "newer", "not detect", "cannot detect", "100"]]]'><span class="why">Seen in: Ch 3 Brain Developer D1 &middot; competency style</span><div class="qbody"><p><b>3.</b> Varsha's computer has got infected with a virus, resulting in its frequent hanging.</p>
+    <p>(a) Which software will you suggest she install in order to solve this problem?<br>(b) Name any two such programs.<br>(c) After installing it, what must she keep doing, and why?</p></div><textarea class="wans" spellcheck="true" placeholder="Write your answer here, the way you would write it in the exam..."></textarea><div class="ansrow"><button class="btn go sm" data-act="wcheck">Check my answer</button><button class="btn gh sm" data-act="wskip">I do not know &mdash; show the answer</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>(a) She should install an <b>antivirus</b> program, which is designed to identify, prevent and remove viruses from a computer.<br>(b) Any two of: <b>McAfee, AVG Antivirus, Bitdefender, Microsoft Security Essentials, Norton Antivirus, Quick Heal</b>.<br>(c) She must <b>keep it updated</b>. Simply installing antivirus software does not guarantee 100% protection, because the installed program may not be able to detect new virus programs.</div></div>
 
-  <div class="qq"><span class="why">Seen in: real paper Q2A4 &middot; alt attribute role</span>
-    <p><b>4.</b> A student writes the following code:</p>
+  <div class="qq pq" id="q-rp1-20" data-q="rp1-20" data-p="rp1" data-t="written" data-m="3" data-sec="Q2 A · Scenario questions" data-kw='[["it shows the alternative text", ["alternative text", "alternate text", "alt text", "computer lab", "text instead", "shows the text", "displays the text"]], ["used when the image cannot be displayed", ["cannot", "can not", "unable", "fail", "slow", "error", "not load", "missing", "broken"]], ["maximum 1024 characters", ["1024"]]]'><span class="why">Seen in: real paper Q2A4 &middot; alt attribute role</span><div class="qbody"><p><b>4.</b> A student writes the following code:</p>
     <div class="codeline">&lt;img src="computer.jpg" alt="Computer Lab"&gt;</div>
-    <p>(a) If the image is unavailable, what role does the alt attribute play?<br>(b) Why is it useful on a webpage?<br>(c) What is the maximum length allowed for the alt text?</p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>(a) The alt attribute displays the alternative text, <b>"Computer Lab"</b>, when the image cannot be displayed.<br>(b) It is useful because the alternative text is displayed when the browser cannot display or load the image &mdash; for example because of a slow connection or an error in the src attribute &mdash; so the visitor still gets a description of the picture.<br>(c) A text string of up to <b>1024 characters</b>, enclosed in quotation marks if it includes spaces or other punctuation.</div></div>
+    <p>(a) If the image is unavailable, what role does the alt attribute play?<br>(b) Why is it useful on a webpage?<br>(c) What is the maximum length allowed for the alt text?</p></div><textarea class="wans" spellcheck="true" placeholder="Write your answer here, the way you would write it in the exam..."></textarea><div class="ansrow"><button class="btn go sm" data-act="wcheck">Check my answer</button><button class="btn gh sm" data-act="wskip">I do not know &mdash; show the answer</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>(a) The alt attribute displays the alternative text, <b>"Computer Lab"</b>, when the image cannot be displayed.<br>(b) It is useful because the alternative text is displayed when the browser cannot display or load the image &mdash; for example because of a slow connection or an error in the src attribute &mdash; so the visitor still gets a description of the picture.<br>(c) A text string of up to <b>1024 characters</b>, enclosed in quotation marks if it includes spaces or other punctuation.</div></div>
 
-  <div class="qq"><span class="why">Seen in: real paper Q2A5 &middot; href and src interchanged</span>
-    <p><b>5.</b> A student wants to display an image named school.jpg and make it a link to school.html. However, the image does not appear on the webpage. The student has written:</p>
+  <div class="qq pq" id="q-rp1-21" data-q="rp1-21" data-p="rp1" data-t="written" data-m="4" data-sec="Q2 A · Scenario questions" data-kw='[["href and src have been interchanged", ["interchang", "swap", "exchang", "reversed", "other way", "wrong way", "opposite"]], ["src must take school.jpg", ["school.jpg"]], ["href must take school.html", ["school.html"]], ["src names the image file", ["src"]], ["href names the link destination", ["href"]]]'><span class="why">Seen in: real paper Q2A5 &middot; href and src interchanged</span><div class="qbody"><p><b>5.</b> A student wants to display an image named school.jpg and make it a link to school.html. However, the image does not appear on the webpage. The student has written:</p>
     <div class="codeline">&lt;a href = "school.jpg"&gt;<br>&lt;img src = "school.html"&gt;<br>&lt;/a&gt;</div>
-    <p>(a) Identify the error in the code.<br>(b) Rewrite the code correctly so that clicking the image opens school.html.<br>(c) Which attribute specifies the image file?<br>(d) Which attribute specifies the destination of the hyperlink?</p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>(a) The values of the <b>href</b> and <b>src</b> attributes have been <b>interchanged</b>. src should specify the image file (school.jpg) and href should specify the webpage to be opened (school.html).<br>(b) Corrected code:<div class="codeline" style="margin-top:8px">&lt;a href="school.html"&gt;<br>&lt;img src="school.jpg"&gt;<br>&lt;/a&gt;</div>(c) The <b>src</b> attribute specifies the image file.<br>(d) The <b>href</b> attribute specifies the destination of the hyperlink.</div></div>
+    <p>(a) Identify the error in the code.<br>(b) Rewrite the code correctly so that clicking the image opens school.html.<br>(c) Which attribute specifies the image file?<br>(d) Which attribute specifies the destination of the hyperlink?</p></div><textarea class="wans" spellcheck="true" placeholder="Write your answer here, the way you would write it in the exam..."></textarea><div class="ansrow"><button class="btn go sm" data-act="wcheck">Check my answer</button><button class="btn gh sm" data-act="wskip">I do not know &mdash; show the answer</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>(a) The values of the <b>href</b> and <b>src</b> attributes have been <b>interchanged</b>. src should specify the image file (school.jpg) and href should specify the webpage to be opened (school.html).<br>(b) Corrected code:<div class="codeline" style="margin-top:8px">&lt;a href="school.html"&gt;<br>&lt;img src="school.jpg"&gt;<br>&lt;/a&gt;</div>(c) The <b>src</b> attribute specifies the image file.<br>(d) The <b>href</b> attribute specifies the destination of the hyperlink.</div></div>
 
-  <div class="qq"><span class="why">Seen in: real paper Q2A6 &middot; ignoring a red warning</span>
-    <p><b>6.</b> Rohan ignores a red warning symbol displayed by his antivirus software because his computer appears to be working normally.</p>
-    <p>(a) Was Rohan's decision appropriate? Give a reason.<br>(b) What could the red warning symbol indicate?<br>(c) What action should he take?</p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>(a) <b>No</b>, Rohan's decision was not appropriate, because a red warning symbol indicates that the computer may have a <b>security issue that requires attention</b>. A computer working normally is not proof that it is safe.<br>(b) It could indicate that the antivirus has <b>detected a threat</b>, or that an important security feature such as virus protection is <b>not active or needs attention</b> &mdash; for example outdated virus definitions or disabled protection.<br>(c) He should open the antivirus program, check the warning, <b>update the virus definitions</b>, run a scan if required, and follow the recommended security action such as quarantining or removing the infected file.</div></div>
+  <div class="qq pq" id="q-rp1-22" data-q="rp1-22" data-p="rp1" data-t="written" data-m="3" data-sec="Q2 A · Scenario questions" data-kw='[["No, the decision was not appropriate", ["no", "not appropriate", "wrong", "incorrect", "should not", "shouldnt"]], ["a red warning means a security issue needs attention", ["security", "threat", "attention", "risk", "danger", "problem", "issue"]], ["working normally is not proof it is safe", ["not proof", "still", "even though", "appear", "seem", "normal", "hidden", "background"]], ["update the definitions and run a scan", ["updat", "scan"]]]'><span class="why">Seen in: real paper Q2A6 &middot; ignoring a red warning</span><div class="qbody"><p><b>6.</b> Rohan ignores a red warning symbol displayed by his antivirus software because his computer appears to be working normally.</p>
+    <p>(a) Was Rohan's decision appropriate? Give a reason.<br>(b) What could the red warning symbol indicate?<br>(c) What action should he take?</p></div><textarea class="wans" spellcheck="true" placeholder="Write your answer here, the way you would write it in the exam..."></textarea><div class="ansrow"><button class="btn go sm" data-act="wcheck">Check my answer</button><button class="btn gh sm" data-act="wskip">I do not know &mdash; show the answer</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>(a) <b>No</b>, Rohan's decision was not appropriate, because a red warning symbol indicates that the computer may have a <b>security issue that requires attention</b>. A computer working normally is not proof that it is safe.<br>(b) It could indicate that the antivirus has <b>detected a threat</b>, or that an important security feature such as virus protection is <b>not active or needs attention</b> &mdash; for example outdated virus definitions or disabled protection.<br>(c) He should open the antivirus program, check the warning, <b>update the virus definitions</b>, run a scan if required, and follow the recommended security action such as quarantining or removing the infected file.</div></div>
 
   <h4 class="sub">B. Apply the knowledge of HTML tags and write the HTML code to get the following output.</h4>
-  <div class="qq"><span class="why">Seen in: real paper Q2B1 &middot; always a table</span>
-    <p><b>1.</b></p>
-    <div class="outbox"><table style="border-collapse:collapse;font-family:'Times New Roman',serif"><tr><th style="border:2px solid #000;padding:4px 9px">Country</th><th style="border:2px solid #000;padding:4px 9px">Capital</th></tr><tr><td style="border:2px solid #000;padding:4px 9px">India</td><td style="border:2px solid #000;padding:4px 9px">New Delhi</td></tr><tr><td style="border:2px solid #000;padding:4px 9px">Japan</td><td style="border:2px solid #000;padding:4px 9px">Tokyo</td></tr><tr><td style="border:2px solid #000;padding:4px 9px">France</td><td style="border:2px solid #000;padding:4px 9px">Paris</td></tr></table></div>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span><div class="pad" data-s="rp1b1"></div>
+  <div class="qq pq" id="q-rp1-23" data-q="rp1-23" data-p="rp1" data-t="build" data-m="4" data-sec="Q2 B · Write the code" data-c="rp1_23"><span class="why">Seen in: real paper Q2B1 &middot; always a table</span><div class="qbody"><p><b>1.</b></p>
+    <div class="outbox"><table style="border-collapse:collapse;font-family:'Times New Roman',serif"><tr><th style="border:2px solid #000;padding:4px 9px">Country</th><th style="border:2px solid #000;padding:4px 9px">Capital</th></tr><tr><td style="border:2px solid #000;padding:4px 9px">India</td><td style="border:2px solid #000;padding:4px 9px">New Delhi</td></tr><tr><td style="border:2px solid #000;padding:4px 9px">Japan</td><td style="border:2px solid #000;padding:4px 9px">Tokyo</td></tr><tr><td style="border:2px solid #000;padding:4px 9px">France</td><td style="border:2px solid #000;padding:4px 9px">Paris</td></tr></table></div></div><div class="pad pqpad" data-s="__pq_rp1_23"></div><div class="ansrow"><button class="btn go sm" data-act="bcheck">Check my code</button><button class="btn gh sm" data-act="bhint">Give me a nudge</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span><div class="pad" data-s="rp1b1"></div>
       <p style="margin-bottom:0">Marks come from: <code class="t">border="2"</code>, the heading row in <code class="t">&lt;th&gt;</code>, and every <code class="t">&lt;td&gt;</code> sitting inside its own <code class="t">&lt;tr&gt;</code>.</p></div></div>
-  <div class="qq"><span class="why">Seen in: real paper Q2B2 &middot; always a list, with a heading</span>
-    <p><b>2.</b></p>
-    <div class="outbox"><div style="font-family:'Times New Roman',serif"><h2 style="margin:0 0 6px">Planets</h2><ol type="I" style="margin:0 0 0 22px"><li>Mercury</li><li>Venus</li><li>Earth</li><li>Mars</li></ol></div></div>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span><div class="pad" data-s="rp1b2"></div></div></div>
+  <div class="qq pq" id="q-rp1-24" data-q="rp1-24" data-p="rp1" data-t="build" data-m="3" data-sec="Q2 B · Write the code" data-c="rp1_24"><span class="why">Seen in: real paper Q2B2 &middot; always a list, with a heading</span><div class="qbody"><p><b>2.</b></p>
+    <div class="outbox"><div style="font-family:'Times New Roman',serif"><h2 style="margin:0 0 6px">Planets</h2><ol type="I" style="margin:0 0 0 22px"><li>Mercury</li><li>Venus</li><li>Earth</li><li>Mars</li></ol></div></div></div><div class="pad pqpad" data-s="__pq_rp1_24"></div><div class="ansrow"><button class="btn go sm" data-act="bcheck">Check my code</button><button class="btn gh sm" data-act="bhint">Give me a nudge</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span><div class="pad" data-s="rp1b2"></div></div></div>
 
   <h4 class="sub">C. Complete the HTML code to get the output shown below and rewrite.</h4>
-  <div class="qq"><span class="why">Seen in: real paper Q2C &middot; fill the blanks in code</span>
-    <div class="outbox"><div style="background:lightyellow;font-family:'Times New Roman',serif;padding:8px"><h1 style="color:red;margin:0 0 6px">My Pets</h1><ul style="list-style:square;margin:0 0 0 22px"><li>Dog</li><li>Cat</li><li>Rabbit</li></ul></div></div>
-    <div class="codeline">&lt;html&gt;<br>&lt;head&gt;<br>&lt;title&gt; ________ &lt;/title&gt;<br>&lt;/head&gt;<br>&lt;body bgcolor = "________"&gt;<br>&lt;h1&gt;&lt;font color = "________"&gt; My Pets &lt;/font&gt;&lt;/h1&gt;<br>&lt;ul type = "________"&gt;<br>&lt;li&gt; Dog<br>&lt;li&gt; ________<br>&lt;li&gt; Rabbit<br>________<br>&lt;/body&gt;<br>&lt;/html&gt;</div>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span><div class="pad" data-s="rp1c"></div>
+  <div class="qq pq" id="q-rp1-25" data-q="rp1-25" data-p="rp1" data-t="build" data-m="4" data-sec="Q2 C · Complete the code" data-c="rp1_25"><span class="why">Seen in: real paper Q2C &middot; fill the blanks in code</span><div class="qbody"><div class="outbox"><div style="background:lightyellow;font-family:'Times New Roman',serif;padding:8px"><h1 style="color:red;margin:0 0 6px">My Pets</h1><ul style="list-style:square;margin:0 0 0 22px"><li>Dog</li><li>Cat</li><li>Rabbit</li></ul></div></div>
+    <div class="codeline">&lt;html&gt;<br>&lt;head&gt;<br>&lt;title&gt; ________ &lt;/title&gt;<br>&lt;/head&gt;<br>&lt;body bgcolor = "________"&gt;<br>&lt;h1&gt;&lt;font color = "________"&gt; My Pets &lt;/font&gt;&lt;/h1&gt;<br>&lt;ul type = "________"&gt;<br>&lt;li&gt; Dog<br>&lt;li&gt; ________<br>&lt;li&gt; Rabbit<br>________<br>&lt;/body&gt;<br>&lt;/html&gt;</div></div><div class="pad pqpad" data-s="__pq_rp1_25"></div><div class="ansrow"><button class="btn go sm" data-act="bcheck">Check my code</button><button class="btn gh sm" data-act="bhint">Give me a nudge</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span><div class="pad" data-s="rp1c"></div>
       <p style="margin-bottom:0">The blanks were: the title, <b>lightyellow</b>, <b>red</b>, <b>square</b>, <b>Cat</b>, and the closing <b>&lt;/ul&gt;</b>. The last blank is nearly always a closing tag &mdash; check what was opened and never closed.</p></div></div>
 
   <h4 class="sub">D. Read the antivirus screen described below and answer the questions.</h4>
-  <div class="qq"><span class="why">Seen in: real paper Q2D &middot; antivirus picture question</span>
-    <div class="avbox">
+  <div class="qq pq" id="q-rp1-26" data-q="rp1-26" data-p="rp1" data-t="written" data-m="4" data-sec="Q2 D · The antivirus screen" data-kw='[["the antivirus is Quick Heal", ["quick heal", "quickheal"]], ["the green ticks mean those protections are ON", ["on", "active", "working", "enabled", "real-time", "real time", "firewall"]], ["the virus definitions are outdated", ["outdat", "old", "38", "not updated", "expired", "out of date", "not been updated"]], [".exe means an executable file", ["exe", "executable"]], ["do NOT restore it from quarantine", ["not restore", "dont restore", "no", "keep it", "leave it", "delete", "remove", "stay"]]]'><span class="why">Seen in: real paper Q2D &middot; antivirus picture question</span><div class="qbody"><div class="avbox">
       <div class="avrow ok"><b>&#10003; Real-Time Protection</b><span>On</span></div>
       <div class="avrow ok"><b>&#10003; Firewall</b><span>On</span></div>
       <div class="avrow bad"><b>&#9888; Virus Definitions</b><span>Last updated 38 days ago</span></div>
       <div class="avrow bad"><b>&#9888; Threat Detected</b><span>File: holiday_photos.exe &mdash; moved to Quarantine</span></div>
       <div class="avfoot">Quick Heal &mdash; Total Security</div>
     </div>
-    <p>(a) Identify the antivirus software shown.<br>(b) What do the two green check marks tell the user?<br>(c) Why has a red warning symbol appeared next to Virus Definitions?<br>(d) The file is named holiday_photos.exe. What does the .exe extension tell you about the risk? Should the user restore it from Quarantine? Give a reason.</p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>(a) <b>Quick Heal</b> antivirus.<br>(b) They indicate that Real-Time Protection and the Firewall are <b>active</b>, so the computer is being protected as it works and no immediate threat has been found on those fronts.<br>(c) Because the <b>virus definitions are outdated</b> &mdash; last updated 38 days ago. The virus database must be updated frequently to catch new types of viruses, so an out-of-date antivirus may not recognise the latest threats.<br>(d) The <b>.exe</b> extension means it is an <b>executable file</b>, and almost all viruses are attached to executable files, infecting the computer when they are run. <b>No</b>, the user should not restore it &mdash; it has been identified as a threat, so it should stay quarantined (isolated so it cannot affect the system) or be removed, and the definitions should be updated and a full scan run.</div></div>
+    <p>(a) Identify the antivirus software shown.<br>(b) What do the two green check marks tell the user?<br>(c) Why has a red warning symbol appeared next to Virus Definitions?<br>(d) The file is named holiday_photos.exe. What does the .exe extension tell you about the risk? Should the user restore it from Quarantine? Give a reason.</p></div><textarea class="wans" spellcheck="true" placeholder="Write your answer here, the way you would write it in the exam..."></textarea><div class="ansrow"><button class="btn go sm" data-act="wcheck">Check my answer</button><button class="btn gh sm" data-act="wskip">I do not know &mdash; show the answer</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>(a) <b>Quick Heal</b> antivirus.<br>(b) They indicate that Real-Time Protection and the Firewall are <b>active</b>, so the computer is being protected as it works and no immediate threat has been found on those fronts.<br>(c) Because the <b>virus definitions are outdated</b> &mdash; last updated 38 days ago. The virus database must be updated frequently to catch new types of viruses, so an out-of-date antivirus may not recognise the latest threats.<br>(d) The <b>.exe</b> extension means it is an <b>executable file</b>, and almost all viruses are attached to executable files, infecting the computer when they are run. <b>No</b>, the user should not restore it &mdash; it has been identified as a threat, so it should stay quarantined (isolated so it cannot affect the system) or be removed, and the definitions should be updated and a full scan run.</div></div>
 
   <h4 class="sub">E. Read the passage given below and answer the questions.</h4>
-  <div class="qq"><span class="why">Seen in: real paper Q2E &middot; five-part passage, worm focus</span>
-    <p>The computer laboratory of a school has twenty computers connected on one network. One morning the technician finds that all twenty are running extremely slowly and their memory is almost full, although nobody has installed anything new and no files have been opened. Over the previous night, a single laptop had been connected to the same network.</p>
-    <p>(a) Which type of malware is responsible for this?<br>(b) How does this malware spread from one computer to another?<br>(c) Why has the memory of the computers become almost full?<br>(d) How is this malware different from a virus?<br>(e) State any two precautions the school should take.</p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>(a) A <b>worm</b>.<br>(b) A computer worm <b>replicates itself</b> and spreads from one computer to another <b>through the network</b>, without any human interaction.<br>(c) Because of its self-replicating nature, a worm causes <b>heavy consumption of system memory</b> &mdash; it keeps making copies of itself until the computers slow down and stop responding.<br>(d) A worm is <b>self-replicating and needs no human intervention</b>, whereas a virus is attached to another executable file and <b>requires human intervention</b> &mdash; someone must open or run the infected file &mdash; before it can infect the computer.<br>(e) Any two: install an antivirus on every computer and <b>keep it updated</b>; install a <b>firewall</b> to control incoming and outgoing network traffic; do not connect untrusted devices to the school network; always scan a pen drive before using it; take a backup of files every day.</div></div>
+  <div class="qq pq" id="q-rp1-27" data-q="rp1-27" data-p="rp1" data-t="written" data-m="5" data-sec="Q2 E · Read the passage" data-kw='[["it is a worm", ["worm"]], ["it spreads through the network", ["network", "lan"]], ["it replicates itself", ["replicat", "copies of itself", "copy itself", "duplicat", "multipl", "clone"]], ["that is why the memory fills up", ["memory", "ram", "space", "full"]], ["it needs no human intervention (a virus does)", ["without human", "no human", "automatic", "on its own", "by itself", "human interven"]], ["precautions: antivirus / firewall / scan / backup", ["antivirus", "firewall", "scan", "backup", "updat"]]]'><span class="why">Seen in: real paper Q2E &middot; five-part passage, worm focus</span><div class="qbody"><p>The computer laboratory of a school has twenty computers connected on one network. One morning the technician finds that all twenty are running extremely slowly and their memory is almost full, although nobody has installed anything new and no files have been opened. Over the previous night, a single laptop had been connected to the same network.</p>
+    <p>(a) Which type of malware is responsible for this?<br>(b) How does this malware spread from one computer to another?<br>(c) Why has the memory of the computers become almost full?<br>(d) How is this malware different from a virus?<br>(e) State any two precautions the school should take.</p></div><textarea class="wans" spellcheck="true" placeholder="Write your answer here, the way you would write it in the exam..."></textarea><div class="ansrow"><button class="btn go sm" data-act="wcheck">Check my answer</button><button class="btn gh sm" data-act="wskip">I do not know &mdash; show the answer</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>(a) A <b>worm</b>.<br>(b) A computer worm <b>replicates itself</b> and spreads from one computer to another <b>through the network</b>, without any human interaction.<br>(c) Because of its self-replicating nature, a worm causes <b>heavy consumption of system memory</b> &mdash; it keeps making copies of itself until the computers slow down and stop responding.<br>(d) A worm is <b>self-replicating and needs no human intervention</b>, whereas a virus is attached to another executable file and <b>requires human intervention</b> &mdash; someone must open or run the infected file &mdash; before it can infect the computer.<br>(e) Any two: install an antivirus on every computer and <b>keep it updated</b>; install a <b>firewall</b> to control incoming and outgoing network traffic; do not connect untrusted devices to the school network; always scan a pen drive before using it; take a backup of files every day.</div></div>
 
   <div class="box g center"><p style="margin:0"><b>End of Practice Set 1.</b> Mark yourself, then work through anything you missed in the matching module.</p></div>
 </section>
@@ -3547,98 +3549,48 @@ Table 2:  table{border-collapse:separate; border-spacing:10px 20px}</div>
     <div class="ph-title">FIRST TERM REVIEW PAPER &mdash; PRACTICE SET 2</div>
     <div class="ph-meta"><span>Std. 7</span><span>Ch. 8 HTML &amp; Ch. 3 Computer Virus</span></div>
   </div>
-  <div class="row"><button class="btn gh" onclick="allAns('rp2',true)">Show all answers</button><button class="btn gh" onclick="allAns('rp2',false)">Hide all answers</button><button class="btn gh" onclick="window.print()">Print this paper</button></div>
+  <div class="row"><button class="btn go" onclick="pqReset('rp2')">Start a fresh attempt</button><button class="btn gh" onclick="allAns('rp2',true)">Show all answers</button><button class="btn gh" onclick="allAns('rp2',false)">Hide all answers</button><button class="btn gh" onclick="window.print()">Print a blank copy</button></div>
   <p class="dimnote">Set 2 deliberately covers what Set 1 did not. Together they cover every pattern in the evidence.</p>
+  <div class="pscore" id="ps-rp2" data-nq="27" data-mm="64"><div class="psbar"><i></i></div><div class="psmeta"><span class="pm"><b><i class="a">0</i>/27</b><em>answered</em></span><span class="pm"><b class="c">0</b><em>right first try</em></span><span class="pm"><b><i class="mks">0</i>/64</b><em>marks</em></span><span class="pm"><b class="pc">0%</b><em>score</em></span></div><div class="psweak"></div></div>
+
 
   <h3 class="head">Question 1</h3>
   <h4 class="sub">A. Choose the correct answers to the questions from the given options.</h4>
   <p class="qnote">(Do not copy the questions, write only the correct answers.)</p>
 
-  <div class="qq"><span class="why">Seen in: real paper Q1A1 &middot; picture-based, ul version</span>
-    <p><b>1.</b> Evaluate the following HTML code. The ________ attribute of the ul tag will display the result as per the picture given below:</p>
-    <div class="outbox"><ul style="list-style:square;margin:0 0 0 20px;font-family:'Times New Roman',serif"><li>Chrome</li><li>Firefox</li><li>Edge</li><li>Safari</li></ul></div>
-    <p class="opts4"><span>(a) start</span><span>(b) type</span><span>(c) reversed</span><span>(d) align</span></p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>(b) type &mdash; the bullets are filled <b>squares</b>, and the type attribute sets the bullet style. The code is <code class="t">&lt;ul type="square"&gt;</code>. Note that start and reversed belong only to <code class="t">&lt;ol&gt;</code>.</div></div>
+  <div class="qq pq" id="q-rp2-1" data-q="rp2-1" data-p="rp2" data-t="mcq" data-m="1" data-sec="Q1 A · Multiple choice" data-a="b"><span class="why">Seen in: real paper Q1A1 &middot; picture-based, ul version</span><div class="qbody"><p><b>1.</b> Evaluate the following HTML code. The ________ attribute of the ul tag will display the result as per the picture given below:</p>
+    <div class="outbox"><ul style="list-style:square;margin:0 0 0 20px;font-family:'Times New Roman',serif"><li>Chrome</li><li>Firefox</li><li>Edge</li><li>Safari</li></ul></div></div><div class="pqopts o4"><button class="opt" data-k="a"><span class="k">a</span><span class="ot">start</span></button><button class="opt" data-k="b"><span class="k">b</span><span class="ot">type</span></button><button class="opt" data-k="c"><span class="k">c</span><span class="ot">reversed</span></button><button class="opt" data-k="d"><span class="k">d</span><span class="ot">align</span></button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>(b) type &mdash; the bullets are filled <b>squares</b>, and the type attribute sets the bullet style. The code is <code class="t">&lt;ul type="square"&gt;</code>. Note that start and reversed belong only to <code class="t">&lt;ol&gt;</code>.</div></div>
 
-  <div class="qq"><span class="why">Seen in: real paper Q1A2 &middot; assertion&ndash;reason, this time a true explanation</span>
-    <p><b>2.</b> <b>Assertion (A):</b> An antivirus program must be updated regularly.<br>
+  <div class="qq pq" id="q-rp2-2" data-q="rp2-2" data-p="rp2" data-t="mcq" data-m="1" data-sec="Q1 A · Multiple choice" data-a="a"><span class="why">Seen in: real paper Q1A2 &middot; assertion&ndash;reason, this time a true explanation</span><div class="qbody"><p><b>2.</b> <b>Assertion (A):</b> An antivirus program must be updated regularly.<br>
     <b>Reason (R):</b> Hundreds of new viruses are developed every hour.<br>
-    Based on the above discussion, choose an appropriate statement from the options given below:</p>
-    <p class="opts1"><span>(a) Both (A) and (R) are true and (R) is the correct explanation of (A).</span><span>(b) Both (A) and (R) are true and (R) is not the correct explanation of (A).</span><span>(c) (A) is true and (R) is false.</span><span>(d) (A) is false and (R) is true.</span></p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>(a) Both (A) and (R) are true and (R) is the correct explanation of (A).<br>New viruses appearing constantly is exactly <b>why</b> developers release frequent updates, so here the reason genuinely does explain the assertion. Compare this with Set 1 Q1A2, where it did not.</div></div>
+    Based on the above discussion, choose an appropriate statement from the options given below:</p></div><div class="pqopts o1"><button class="opt" data-k="a"><span class="k">a</span><span class="ot">Both (A) and (R) are true and (R) is the correct explanation of (A).</span></button><button class="opt" data-k="b"><span class="k">b</span><span class="ot">Both (A) and (R) are true and (R) is not the correct explanation of (A).</span></button><button class="opt" data-k="c"><span class="k">c</span><span class="ot">(A) is true and (R) is false.</span></button><button class="opt" data-k="d"><span class="k">d</span><span class="ot">(A) is false and (R) is true.</span></button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>(a) Both (A) and (R) are true and (R) is the correct explanation of (A).<br>New viruses appearing constantly is exactly <b>why</b> developers release frequent updates, so here the reason genuinely does explain the assertion. Compare this with Set 1 Q1A2, where it did not.</div></div>
 
-  <div class="qq"><span class="why">Seen in: Ch 3 Brain Developer C5 &middot; real paper Q1A2</span>
-    <p><b>3.</b> It is a type of malicious software that gains entry into a system and monitors the user without his knowledge.</p>
-    <p class="opts4"><span>(a) Worm</span><span>(b) Trojan Horse</span><span>(c) Spyware</span><span>(d) Boot sector virus</span></p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>(c) Spyware &mdash; it monitors the user activity without his knowledge and then reveals the collected information to another interested party.</div></div>
+  <div class="qq pq" id="q-rp2-3" data-q="rp2-3" data-p="rp2" data-t="mcq" data-m="1" data-sec="Q1 A · Multiple choice" data-a="c"><span class="why">Seen in: Ch 3 Brain Developer C5 &middot; real paper Q1A2</span><div class="qbody"><p><b>3.</b> It is a type of malicious software that gains entry into a system and monitors the user without his knowledge.</p></div><div class="pqopts o4"><button class="opt" data-k="a"><span class="k">a</span><span class="ot">Worm</span></button><button class="opt" data-k="b"><span class="k">b</span><span class="ot">Trojan Horse</span></button><button class="opt" data-k="c"><span class="k">c</span><span class="ot">Spyware</span></button><button class="opt" data-k="d"><span class="k">d</span><span class="ot">Boot sector virus</span></button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>(c) Spyware &mdash; it monitors the user activity without his knowledge and then reveals the collected information to another interested party.</div></div>
 
-  <div class="qq"><span class="why">Seen in: Ch 3 Brain Developer C4 &middot; email route</span>
-    <p><b>4.</b> An email virus may enter the computer system through the email ________.</p>
-    <p class="opts4"><span>(a) Attachments</span><span>(b) Addresses</span><span>(c) Contacts</span><span>(d) Subject line</span></p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>(a) Attachments &mdash; viruses may be sent as an executable file with an email attachment and mislead the recipient into clicking on it. This is one of the three ways a virus spreads.</div></div>
+  <div class="qq pq" id="q-rp2-4" data-q="rp2-4" data-p="rp2" data-t="mcq" data-m="1" data-sec="Q1 A · Multiple choice" data-a="a"><span class="why">Seen in: Ch 3 Brain Developer C4 &middot; email route</span><div class="qbody"><p><b>4.</b> An email virus may enter the computer system through the email ________.</p></div><div class="pqopts o4"><button class="opt" data-k="a"><span class="k">a</span><span class="ot">Attachments</span></button><button class="opt" data-k="b"><span class="k">b</span><span class="ot">Addresses</span></button><button class="opt" data-k="c"><span class="k">c</span><span class="ot">Contacts</span></button><button class="opt" data-k="d"><span class="k">d</span><span class="ot">Subject line</span></button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>(a) Attachments &mdash; viruses may be sent as an executable file with an email attachment and mislead the recipient into clicking on it. This is one of the three ways a virus spreads.</div></div>
 
-  <div class="qq"><span class="why">Seen in: Ch 8 Brain Developer C5 &middot; row tag</span>
-    <p><b>5.</b> Which of the following is used to create a row in a table?</p>
-    <p class="opts4"><span>(a) &lt;tr&gt;, &lt;/tr&gt;</span><span>(b) &lt;td&gt;, &lt;/td&gt;</span><span>(c) &lt;row&gt;, &lt;/row&gt;</span><span>(d) &lt;th&gt;, &lt;/th&gt;</span></p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>(a) &lt;tr&gt;, &lt;/tr&gt; &mdash; the table row tag. &lt;td&gt; makes a data cell and &lt;th&gt; makes a heading cell; both sit <b>inside</b> a &lt;tr&gt;. There is no &lt;row&gt; tag in HTML.</div></div>
+  <div class="qq pq" id="q-rp2-5" data-q="rp2-5" data-p="rp2" data-t="mcq" data-m="1" data-sec="Q1 A · Multiple choice" data-a="a"><span class="why">Seen in: Ch 8 Brain Developer C5 &middot; row tag</span><div class="qbody"><p><b>5.</b> Which of the following is used to create a row in a table?</p></div><div class="pqopts o4"><button class="opt" data-k="a"><span class="k">a</span><span class="ot">&lt;tr&gt;, &lt;/tr&gt;</span></button><button class="opt" data-k="b"><span class="k">b</span><span class="ot">&lt;td&gt;, &lt;/td&gt;</span></button><button class="opt" data-k="c"><span class="k">c</span><span class="ot">&lt;row&gt;, &lt;/row&gt;</span></button><button class="opt" data-k="d"><span class="k">d</span><span class="ot">&lt;th&gt;, &lt;/th&gt;</span></button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>(a) &lt;tr&gt;, &lt;/tr&gt; &mdash; the table row tag. &lt;td&gt; makes a data cell and &lt;th&gt; makes a heading cell; both sit <b>inside</b> a &lt;tr&gt;. There is no &lt;row&gt; tag in HTML.</div></div>
 
   <h4 class="sub">B. Complete the following analogies and rewrite them.</h4>
-  <div class="qq"><span class="why">Seen in: real paper Q1B &middot; malware behaviour analogy</span>
-    <p><b>1.</b> Worm &mdash; spreads without human help :: ________ &mdash; needs human help to spread.</p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>Worm &mdash; spreads without human help :: <b>Virus</b> &mdash; needs human help to spread.</div></div>
-  <div class="qq"><span class="why">Seen in: real paper Q1B &middot; default values</span>
-    <p><b>2.</b> &lt;ul&gt; &mdash; disc :: &lt;ol&gt; &mdash; ________.</p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>&lt;ul&gt; &mdash; disc :: &lt;ol&gt; &mdash; <b>1</b>. These are the two default type values.</div></div>
-  <div class="qq"><span class="why">Seen in: real paper Q1B &middot; attribute purpose analogy</span>
-    <p><b>3.</b> src attribute &mdash; specifies the image file :: ________ attribute &mdash; specifies the destination of a hyperlink.</p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>src attribute &mdash; specifies the image file :: <b>href</b> attribute &mdash; specifies the destination of a hyperlink.</div></div>
+  <div class="qq pq" id="q-rp2-6" data-q="rp2-6" data-p="rp2" data-t="short" data-m="1" data-sec="Q1 B · Analogies" data-k='["virus", "a virus", "computer virus", "viruses"]' data-h="Which malware needs a human to open or run something?"><span class="why">Seen in: real paper Q1B &middot; malware behaviour analogy</span><div class="qbody"><p><b>1.</b> Worm &mdash; spreads without human help :: ________ &mdash; needs human help to spread.</p></div><div class="ansrow"><input class="ain" placeholder="Type the missing part" spellcheck="false"><button class="btn go sm" data-act="check">Check</button><button class="btn gh sm" data-act="hint">Hint</button><button class="btn gh sm" data-act="giveup">Show me</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>Worm &mdash; spreads without human help :: <b>Virus</b> &mdash; needs human help to spread.</div></div>
+  <div class="qq pq" id="q-rp2-7" data-q="rp2-7" data-p="rp2" data-t="short" data-m="1" data-sec="Q1 B · Analogies" data-k='["1", "one", "1.", "number", "numbers", "arabic numerals", "numbered"]' data-h="What marker does an ordered list use if you give it no type at all?"><span class="why">Seen in: real paper Q1B &middot; default values</span><div class="qbody"><p><b>2.</b> &lt;ul&gt; &mdash; disc :: &lt;ol&gt; &mdash; ________.</p></div><div class="ansrow"><input class="ain" placeholder="Type the missing part" spellcheck="false"><button class="btn go sm" data-act="check">Check</button><button class="btn gh sm" data-act="hint">Hint</button><button class="btn gh sm" data-act="giveup">Show me</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>&lt;ul&gt; &mdash; disc :: &lt;ol&gt; &mdash; <b>1</b>. These are the two default type values.</div></div>
+  <div class="qq pq" id="q-rp2-8" data-q="rp2-8" data-p="rp2" data-t="short" data-m="1" data-sec="Q1 B · Analogies" data-k='["href", "href attribute", "the href attribute"]' data-h="Just the attribute name."><span class="why">Seen in: real paper Q1B &middot; attribute purpose analogy</span><div class="qbody"><p><b>3.</b> src attribute &mdash; specifies the image file :: ________ attribute &mdash; specifies the destination of a hyperlink.</p></div><div class="ansrow"><input class="ain" placeholder="Type the missing part" spellcheck="false"><button class="btn go sm" data-act="check">Check</button><button class="btn gh sm" data-act="hint">Hint</button><button class="btn gh sm" data-act="giveup">Show me</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>src attribute &mdash; specifies the image file :: <b>href</b> attribute &mdash; specifies the destination of a hyperlink.</div></div>
 
   <h4 class="sub">C. Study the following HTML code. Identify the error and rewrite the corrected code.</h4>
-  <div class="qq"><span class="why">Seen in: real paper Q1C3 &middot; wrong tag name for ordered list</span>
-    <p><b>1.</b></p><div class="codeline">&lt;ordered type = "Roman"&gt;</div>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>Two errors. The tag is <b>&lt;ol&gt;</b>, not &lt;ordered&gt;, and the type value for upper case Roman numbers is <b>"I"</b>, not "Roman".<div class="codeline" style="margin-top:8px">&lt;ol type = "I"&gt;</div></div></div>
-  <div class="qq"><span class="why">Seen in: Ch 8 Brain Developer &middot; empty tag closed</span>
-    <p><b>2.</b></p><div class="codeline">&lt;img src = "cat.jpg" alt = "my cat"&gt;&lt;/img&gt;</div>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>&lt;img&gt; is an <b>empty tag</b>, so it has no closing tag.<div class="codeline" style="margin-top:8px">&lt;img src = "cat.jpg" alt = "my cat"&gt;</div></div></div>
-  <div class="qq"><span class="why">Seen in: real paper Q1C &middot; mailto keyword</span>
-    <p><b>3.</b></p><div class="codeline">&lt;a href = "email:info@kips.in"&gt; Mail us &lt;/a&gt;</div>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>The keyword for an email link is <b>mailto:</b>. There is no "email:" keyword.<div class="codeline" style="margin-top:8px">&lt;a href = "mailto:info@kips.in"&gt; Mail us &lt;/a&gt;</div></div></div>
-  <div class="qq"><span class="why">Seen in: type-value confusion between ul and ol</span>
-    <p><b>4.</b></p><div class="codeline">&lt;ul type = "1"&gt;</div>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>An unordered list takes <b>disc, square or circle</b>. The value "1" belongs to an ordered list.<div class="codeline" style="margin-top:8px">&lt;ul type = "disc"&gt;</div>If numbering was actually wanted, the tag itself should have been <code class="t">&lt;ol type="1"&gt;</code>.</div></div>
+  <div class="qq pq" id="q-rp2-9" data-q="rp2-9" data-p="rp2" data-t="codefix" data-m="2" data-sec="Q1 C · Spot the error in the code" data-k='["<ol type = \"i\">", "<ol type=\"i\">", "<ol type = \"i\" >"]'><span class="why">Seen in: real paper Q1C3 &middot; wrong tag name for ordered list</span><div class="qbody"><p><b>1.</b></p><div class="codeline">&lt;ordered type = "Roman"&gt;</div></div><div class="ansrow"><input class="ain mono" placeholder="Rewrite the corrected code here" spellcheck="false"><button class="btn go sm" data-act="check">Check</button><button class="btn gh sm" data-act="giveup">Show me</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>Two errors. The tag is <b>&lt;ol&gt;</b>, not &lt;ordered&gt;, and the type value for upper case Roman numbers is <b>"I"</b>, not "Roman".<div class="codeline" style="margin-top:8px">&lt;ol type = "I"&gt;</div></div></div>
+  <div class="qq pq" id="q-rp2-10" data-q="rp2-10" data-p="rp2" data-t="codefix" data-m="2" data-sec="Q1 C · Spot the error in the code" data-k='["<img src = \"cat.jpg\" alt = \"my cat\">", "<img src=\"cat.jpg\" alt=\"my cat\">", "<img alt = \"my cat\" src = \"cat.jpg\">"]'><span class="why">Seen in: Ch 8 Brain Developer &middot; empty tag closed</span><div class="qbody"><p><b>2.</b></p><div class="codeline">&lt;img src = "cat.jpg" alt = "my cat"&gt;&lt;/img&gt;</div></div><div class="ansrow"><input class="ain mono" placeholder="Rewrite the corrected code here" spellcheck="false"><button class="btn go sm" data-act="check">Check</button><button class="btn gh sm" data-act="giveup">Show me</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>&lt;img&gt; is an <b>empty tag</b>, so it has no closing tag.<div class="codeline" style="margin-top:8px">&lt;img src = "cat.jpg" alt = "my cat"&gt;</div></div></div>
+  <div class="qq pq" id="q-rp2-11" data-q="rp2-11" data-p="rp2" data-t="codefix" data-m="2" data-sec="Q1 C · Spot the error in the code" data-k='["<a href = \"mailto:info@kips.in\"> mail us </a>", "<a href=\"mailto:info@kips.in\">mail us</a>", "<a href = \"mailto:info@kips.in\">mail us</a>"]'><span class="why">Seen in: real paper Q1C &middot; mailto keyword</span><div class="qbody"><p><b>3.</b></p><div class="codeline">&lt;a href = "email:info@kips.in"&gt; Mail us &lt;/a&gt;</div></div><div class="ansrow"><input class="ain mono" placeholder="Rewrite the corrected code here" spellcheck="false"><button class="btn go sm" data-act="check">Check</button><button class="btn gh sm" data-act="giveup">Show me</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>The keyword for an email link is <b>mailto:</b>. There is no "email:" keyword.<div class="codeline" style="margin-top:8px">&lt;a href = "mailto:info@kips.in"&gt; Mail us &lt;/a&gt;</div></div></div>
+  <div class="qq pq" id="q-rp2-12" data-q="rp2-12" data-p="rp2" data-t="codefix" data-m="2" data-sec="Q1 C · Spot the error in the code" data-k='["<ul type = \"disc\">", "<ul type=\"disc\">", "<ul type = \"square\">", "<ul type=\"square\">", "<ul type = \"circle\">", "<ul type=\"circle\">"]'><span class="why">Seen in: type-value confusion between ul and ol</span><div class="qbody"><p><b>4.</b></p><div class="codeline">&lt;ul type = "1"&gt;</div></div><div class="ansrow"><input class="ain mono" placeholder="Rewrite the corrected code here" spellcheck="false"><button class="btn go sm" data-act="check">Check</button><button class="btn gh sm" data-act="giveup">Show me</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>An unordered list takes <b>disc, square or circle</b>. The value "1" belongs to an ordered list.<div class="codeline" style="margin-top:8px">&lt;ul type = "disc"&gt;</div>If numbering was actually wanted, the tag itself should have been <code class="t">&lt;ol type="1"&gt;</code>.</div></div>
 
   <h4 class="sub">D. Correct the following incorrect statements and rewrite them.</h4>
-  <div class="qq"><span class="why">Seen in: Ch 3 Brain Developer B1 &middot; worms in boot sector</span>
-    <p><b>1.</b> Worms reside in the boot sector of a hard disk.</p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>It is the <b>boot sector virus</b> that infects the boot sector of a hard drive. A <b>worm</b> is a self-replicating program that spreads across a <b>network</b> without human intervention and consumes system memory.</div></div>
-  <div class="qq"><span class="why">Seen in: Ch 8 Brain Developer B1 &middot; ordered list starts at 0</span>
-    <p><b>2.</b> An ordered list automatically starts with the number 0.</p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>An ordered list automatically starts with the number <b>1</b>, but you can start it with a different number using the <b>start</b> attribute.</div></div>
+  <div class="qq pq" id="q-rp2-13" data-q="rp2-13" data-p="rp2" data-t="written" data-m="2" data-sec="Q1 D · Correct the wrong statement" data-kw='[["it is the BOOT SECTOR VIRUS that lives in the boot sector", ["boot sector virus", "boot sector"]], ["a worm spreads through the network", ["network"]], ["a worm replicates itself", ["replicat", "copies", "copy itself", "duplicat"]]]'><span class="why">Seen in: Ch 3 Brain Developer B1 &middot; worms in boot sector</span><div class="qbody"><p><b>1.</b> Worms reside in the boot sector of a hard disk.</p></div><textarea class="wans" spellcheck="true" placeholder="Write your answer here, the way you would write it in the exam..."></textarea><div class="ansrow"><button class="btn go sm" data-act="wcheck">Check my answer</button><button class="btn gh sm" data-act="wskip">I do not know &mdash; show the answer</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>It is the <b>boot sector virus</b> that infects the boot sector of a hard drive. A <b>worm</b> is a self-replicating program that spreads across a <b>network</b> without human intervention and consumes system memory.</div></div>
+  <div class="qq pq" id="q-rp2-14" data-q="rp2-14" data-p="rp2" data-t="written" data-m="2" data-sec="Q1 D · Correct the wrong statement" data-kw='[["it starts at 1", ["1", "one"]], ["the start attribute changes where it begins", ["start"]]]'><span class="why">Seen in: Ch 8 Brain Developer B1 &middot; ordered list starts at 0</span><div class="qbody"><p><b>2.</b> An ordered list automatically starts with the number 0.</p></div><textarea class="wans" spellcheck="true" placeholder="Write your answer here, the way you would write it in the exam..."></textarea><div class="ansrow"><button class="btn go sm" data-act="wcheck">Check my answer</button><button class="btn gh sm" data-act="wskip">I do not know &mdash; show the answer</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>An ordered list automatically starts with the number <b>1</b>, but you can start it with a different number using the <b>start</b> attribute.</div></div>
 
   <h4 class="sub">E. Evaluate the statement "A computer with no internet connection can never get a virus." Give any two reasons to support your answer.</h4>
-  <div class="qq"><span class="why">Seen in: real paper Q1E &middot; evaluate-a-statement</span>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>The statement is <b>incorrect</b>.<br>1. A virus can enter through a <b>removable storage device</b> &mdash; an infected flash drive, CD or DVD &mdash; which is one of the three ways a virus spreads and needs no internet at all. The AutoRun function can even launch it automatically.<br>2. A virus can also spread through a <b>local computer network</b> via shared drives and folders, and such a network can exist without any internet connection. In addition, a computer with no internet <b>cannot download antivirus updates</b>, which makes it more vulnerable, not less.</div></div>
+  <div class="qq pq" id="q-rp2-15" data-q="rp2-15" data-p="rp2" data-t="written" data-m="3" data-sec="Q1 E · Evaluate the statement" data-kw='[["the statement is incorrect", ["incorrect", "wrong", "false", "not true", "can get"]], ["a virus can arrive on a pen drive / removable storage", ["pen drive", "pendrive", "usb", "removable", "storage device", "cd", "dvd", "external"]], ["it can arrive with infected files copied from another computer", ["copy", "copied", "another computer", "shared", "network", "lan", "pirated", "software"]]]'><span class="why">Seen in: real paper Q1E &middot; evaluate-a-statement</span><div class="qbody"></div><textarea class="wans" spellcheck="true" placeholder="Write your answer here, the way you would write it in the exam..."></textarea><div class="ansrow"><button class="btn go sm" data-act="wcheck">Check my answer</button><button class="btn gh sm" data-act="wskip">I do not know &mdash; show the answer</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>The statement is <b>incorrect</b>.<br>1. A virus can enter through a <b>removable storage device</b> &mdash; an infected flash drive, CD or DVD &mdash; which is one of the three ways a virus spreads and needs no internet at all. The AutoRun function can even launch it automatically.<br>2. A virus can also spread through a <b>local computer network</b> via shared drives and folders, and such a network can exist without any internet connection. In addition, a computer with no internet <b>cannot download antivirus updates</b>, which makes it more vulnerable, not less.</div></div>
 
   <h4 class="sub">F. A teacher opens a spreadsheet emailed by an unknown address. From the next day, every new spreadsheet she creates behaves strangely, and colleagues who open her files report the same problem.</h4>
-  <div class="qq"><span class="why">Seen in: real paper Q1F &middot; three-part virus-type scenario</span>
-    <p><b>1.</b> Identify the type of virus involved.<br><b>2.</b> Explain how its method of operation differs from that of a boot sector virus.<br><b>3.</b> State any one precaution the teacher should have taken.</p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>
+  <div class="qq pq" id="q-rp2-16" data-q="rp2-16" data-p="rp2" data-t="written" data-m="3" data-sec="Q1 F · Malware scenario" data-kw='[["it is a macro virus", ["macro"]], ["it infects files made by software that supports macros", ["word", "excel", "powerpoint", "document", "spreadsheet", "application"]], ["it activates when the document is OPENED", ["open"]], ["a boot sector virus acts at BOOT time instead", ["boot"]], ["never open an attachment from an unknown sender", ["attachment", "unknown", "trusted", "scan", "stranger"]]]'><span class="why">Seen in: real paper Q1F &middot; three-part virus-type scenario</span><div class="qbody"><p><b>1.</b> Identify the type of virus involved.<br><b>2.</b> Explain how its method of operation differs from that of a boot sector virus.<br><b>3.</b> State any one precaution the teacher should have taken.</p></div><textarea class="wans" spellcheck="true" placeholder="Write your answer here, the way you would write it in the exam..."></textarea><div class="ansrow"><button class="btn go sm" data-act="wcheck">Check my answer</button><button class="btn gh sm" data-act="wskip">I do not know &mdash; show the answer</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>
       <b>1.</b> A <b>macro virus</b>.<br>
       <b>2.</b> A macro virus infects files created using application software that supports macros &mdash; Word, Excel and PowerPoint &mdash; and gets loaded into the main memory when the infected <b>document is opened</b>, after which every document she produces becomes infected. A <b>boot sector virus</b> instead infects the <b>boot sector</b> of the hard drive, which carries the master boot record, and becomes active at the time of <b>booting</b> the machine.<br>
       <b>3.</b> She should never have clicked on an attachment in an email from an unknown source; attachments should only be opened if they come from a genuine and trusted source, and should be scanned with an updated antivirus first.</div></div>
@@ -3646,83 +3598,50 @@ Table 2:  table{border-collapse:separate; border-spacing:10px 20px}</div>
   <h3 class="head">Question 2</h3>
   <h4 class="sub">A. Analyse the scenarios given below and answer the following questions.</h4>
 
-  <div class="qq"><span class="why">Seen in: real paper Q2A1 &middot; list tag with a type</span>
-    <p><b>1.</b> A student is making a web page of the steps for a science experiment, which must be followed in a fixed order, using capital letters A, B, C as the markers.</p>
-    <p>(a) Which HTML list tag will he use?<br>(b) Write the exact opening tag he needs.<br>(c) He now wants the list to begin at C instead of A. What does he add?</p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>(a) The <b>&lt;ol&gt;</b> tag of the ordered list, because the steps must be in a specific order.<br>(b) <code class="t">&lt;ol type = "A"&gt;</code><br>(c) He adds the <b>start</b> attribute with the <b>number 3</b>, because C is the third letter: <code class="t">&lt;ol type="A" start="3"&gt;</code>. Start is always a number, never a letter.<div class="pad" data-s="rp2a1"></div></div></div>
+  <div class="qq pq" id="q-rp2-17" data-q="rp2-17" data-p="rp2" data-t="written" data-m="3" data-sec="Q2 A · Scenario questions" data-kw='[["<ol> because the order matters", ["ol"]], ["type = \"A\" gives capital letters", ["type"]], ["start = \"3\" begins at C", ["start", "3", "three"]], ["start is always a NUMBER, never a letter", ["number", "numeric", "not a letter", "never a letter"]]]'><span class="why">Seen in: real paper Q2A1 &middot; list tag with a type</span><div class="qbody"><p><b>1.</b> A student is making a web page of the steps for a science experiment, which must be followed in a fixed order, using capital letters A, B, C as the markers.</p>
+    <p>(a) Which HTML list tag will he use?<br>(b) Write the exact opening tag he needs.<br>(c) He now wants the list to begin at C instead of A. What does he add?</p></div><textarea class="wans" spellcheck="true" placeholder="Write your answer here, the way you would write it in the exam..."></textarea><div class="ansrow"><button class="btn go sm" data-act="wcheck">Check my answer</button><button class="btn gh sm" data-act="wskip">I do not know &mdash; show the answer</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>(a) The <b>&lt;ol&gt;</b> tag of the ordered list, because the steps must be in a specific order.<br>(b) <code class="t">&lt;ol type = "A"&gt;</code><br>(c) He adds the <b>start</b> attribute with the <b>number 3</b>, because C is the third letter: <code class="t">&lt;ol type="A" start="3"&gt;</code>. Start is always a number, never a letter.<div class="pad" data-s="rp2a1"></div></div></div>
 
-  <div class="qq"><span class="why">Seen in: real paper Q2A2 &middot; write the marquee code</span>
-    <p><b>2.</b> A news website wants "BREAKING NEWS" to scroll continuously from right to left on a yellow strip. Write the code to display the above output.</p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span><div class="pad" data-s="rp2a2"></div>
+  <div class="qq pq" id="q-rp2-18" data-q="rp2-18" data-p="rp2" data-t="build" data-m="3" data-sec="Q2 A · Scenario questions" data-c="rp2_18"><span class="why">Seen in: real paper Q2A2 &middot; write the marquee code</span><div class="qbody"><p><b>2.</b> A news website wants "BREAKING NEWS" to scroll continuously from right to left on a yellow strip. Write the code to display the above output.</p></div><div class="pad pqpad" data-s="__pq_rp2_18"></div><div class="ansrow"><button class="btn go sm" data-act="bcheck">Check my code</button><button class="btn gh sm" data-act="bhint">Give me a nudge</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span><div class="pad" data-s="rp2a2"></div>
       <p style="margin-bottom:0">Since the default direction is already left and the default loop is already infinite, <code class="t">&lt;marquee bgcolor="yellow"&gt;BREAKING NEWS&lt;/marquee&gt;</code> would also be accepted.</p></div></div>
 
-  <div class="qq"><span class="why">Seen in: Ch 3 Brain Developer D2 &middot; competency style, extensions</span>
-    <p><b>3.</b> Sumit's computer is not working properly. Its executable files and programs with extensions like .com, .exe, .ovl, .drv, .sys have got infected.</p>
-    <p>(a) What type of virus has infected the computer?<br>(b) When does this virus become active?<br>(c) Name any two examples of this type of virus.</p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>(a) A <b>program file virus</b>.<br>(b) It becomes active when the <b>infected file is executed</b>. It then gets loaded in memory, remains active there, and infects other files and programs on the disk.<br>(c) <b>Sunday</b> and <b>Cascade</b>.</div></div>
+  <div class="qq pq" id="q-rp2-19" data-q="rp2-19" data-p="rp2" data-t="written" data-m="3" data-sec="Q2 A · Scenario questions" data-kw='[["it is a program file virus", ["program file", "program virus", "file virus", "executable"]], ["it becomes active when the infected file is run", ["execut", "run", "open", "launch"]], ["install and update an antivirus, then scan", ["antivirus", "scan", "updat"]]]'><span class="why">Seen in: Ch 3 Brain Developer D2 &middot; competency style, extensions</span><div class="qbody"><p><b>3.</b> Sumit's computer is not working properly. Its executable files and programs with extensions like .com, .exe, .ovl, .drv, .sys have got infected.</p>
+    <p>(a) What type of virus has infected the computer?<br>(b) When does this virus become active?<br>(c) Name any two examples of this type of virus.</p></div><textarea class="wans" spellcheck="true" placeholder="Write your answer here, the way you would write it in the exam..."></textarea><div class="ansrow"><button class="btn go sm" data-act="wcheck">Check my answer</button><button class="btn gh sm" data-act="wskip">I do not know &mdash; show the answer</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>(a) A <b>program file virus</b>.<br>(b) It becomes active when the <b>infected file is executed</b>. It then gets loaded in memory, remains active there, and infects other files and programs on the disk.<br>(c) <b>Sunday</b> and <b>Cascade</b>.</div></div>
 
-  <div class="qq"><span class="why">Seen in: Ch 8 Brain Developer D1 &middot; competency style, table property</span>
-    <p><b>4.</b> Manas has created a table in HTML. He wants to collapse the table borders into a single border.</p>
-    <p>(a) Which property should he use?<br>(b) Write the CSS line he needs.<br>(c) What is the other possible value of this property, and what does it do?</p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>(a) The <b>border-collapse</b> property.<br>(b) <code class="t">table{border-collapse:collapse}</code><br>(c) The other value is <b>separate</b>, which keeps the borders of the cells <b>detached</b> from each other as usual. With separate borders you can also set <code class="t">border-spacing</code> to control the gap.</div></div>
+  <div class="qq pq" id="q-rp2-20" data-q="rp2-20" data-p="rp2" data-t="written" data-m="3" data-sec="Q2 A · Scenario questions" data-kw='[["the border-collapse property", ["border-collapse", "border collapse", "bordercollapse"]], ["the value is collapse", ["collapse"]], ["it is written in CSS, inside a style", ["style", "css"]]]'><span class="why">Seen in: Ch 8 Brain Developer D1 &middot; competency style, table property</span><div class="qbody"><p><b>4.</b> Manas has created a table in HTML. He wants to collapse the table borders into a single border.</p>
+    <p>(a) Which property should he use?<br>(b) Write the CSS line he needs.<br>(c) What is the other possible value of this property, and what does it do?</p></div><textarea class="wans" spellcheck="true" placeholder="Write your answer here, the way you would write it in the exam..."></textarea><div class="ansrow"><button class="btn go sm" data-act="wcheck">Check my answer</button><button class="btn gh sm" data-act="wskip">I do not know &mdash; show the answer</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>(a) The <b>border-collapse</b> property.<br>(b) <code class="t">table{border-collapse:collapse}</code><br>(c) The other value is <b>separate</b>, which keeps the borders of the cells <b>detached</b> from each other as usual. With separate borders you can also set <code class="t">border-spacing</code> to control the gap.</div></div>
 
-  <div class="qq"><span class="why">Seen in: real paper Q2A5 &middot; table code with a structural error</span>
-    <p><b>5.</b> A student wants three rows in a table but only one row appears, with all six pieces of data in it. The student has written:</p>
+  <div class="qq pq" id="q-rp2-21" data-q="rp2-21" data-p="rp2" data-t="written" data-m="3" data-sec="Q2 A · Scenario questions" data-kw='[["all six cells sit inside ONE <tr>", ["one tr", "single tr", "same tr", "one row", "single row", "same row", "only one"]], ["each row needs its own <tr> ... </tr>", ["own tr", "separate", "three tr", "each row", "new tr", "three rows", "3 tr"]], ["<td> must always sit inside <tr>", ["td"]]]'><span class="why">Seen in: real paper Q2A5 &middot; table code with a structural error</span><div class="qbody"><p><b>5.</b> A student wants three rows in a table but only one row appears, with all six pieces of data in it. The student has written:</p>
     <div class="codeline">&lt;table border = "1"&gt;<br>&lt;tr&gt;<br>&lt;td&gt;Pen&lt;/td&gt;&lt;td&gt;10&lt;/td&gt;<br>&lt;td&gt;Book&lt;/td&gt;&lt;td&gt;50&lt;/td&gt;<br>&lt;td&gt;Bag&lt;/td&gt;&lt;td&gt;400&lt;/td&gt;<br>&lt;/tr&gt;<br>&lt;/table&gt;</div>
-    <p>(a) Identify the error in the code.<br>(b) Rewrite the code correctly.<br>(c) Which tag must always be present inside the &lt;tr&gt; tag?</p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>(a) All six cells have been placed inside a <b>single</b> &lt;tr&gt; tag. Each row needs its <b>own pair</b> of &lt;tr&gt; and &lt;/tr&gt; tags.<br>(b) Corrected code:<div class="pad" data-s="rp2a5"></div>(c) The <b>&lt;td&gt;</b> tag &mdash; and equally the &lt;th&gt; tag &mdash; must always be present inside the &lt;tr&gt; tag.</div></div>
+    <p>(a) Identify the error in the code.<br>(b) Rewrite the code correctly.<br>(c) Which tag must always be present inside the &lt;tr&gt; tag?</p></div><textarea class="wans" spellcheck="true" placeholder="Write your answer here, the way you would write it in the exam..."></textarea><div class="ansrow"><button class="btn go sm" data-act="wcheck">Check my answer</button><button class="btn gh sm" data-act="wskip">I do not know &mdash; show the answer</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>(a) All six cells have been placed inside a <b>single</b> &lt;tr&gt; tag. Each row needs its <b>own pair</b> of &lt;tr&gt; and &lt;/tr&gt; tags.<br>(b) Corrected code:<div class="pad" data-s="rp2a5"></div>(c) The <b>&lt;td&gt;</b> tag &mdash; and equally the &lt;th&gt; tag &mdash; must always be present inside the &lt;tr&gt; tag.</div></div>
 
-  <div class="qq"><span class="why">Seen in: notes p5 &middot; the USB decision, asked verbatim</span>
-    <p><b>6.</b> Riya needs to use a USB drive received from another computer. When she connects it, she notices that her antivirus is installed but its virus definitions expired several days ago.</p>
-    <p>(a) What is the best cybersecurity practice here?<br>(b) Why does the expiry date matter?<br>(c) The scan reports a threat in one file. What should she do with that file?</p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>(a) <b>Update the antivirus, scan the USB, and open it only if no threats are detected.</b> Opening files first and scanning later, disabling the antivirus, or formatting the drive without checking are all wrong.<br>(b) Because hundreds of new viruses are developed every hour, and the antivirus recognises threats by comparing files against its <b>virus database</b>. Expired definitions mean it may not recognise the newest threats.<br>(c) She should follow the antivirus program's recommended action &mdash; <b>quarantine</b> the file, which isolates it so that it cannot affect the system, or remove it. She must not open it.</div></div>
+  <div class="qq pq" id="q-rp2-22" data-q="rp2-22" data-p="rp2" data-t="written" data-m="3" data-sec="Q2 A · Scenario questions" data-kw='[["update the antivirus first", ["updat"]], ["then scan the USB drive", ["scan"]], ["open it only if no threat is found", ["only if", "no threat", "after", "clean", "not open", "dont open", "wait"]]]'><span class="why">Seen in: notes p5 &middot; the USB decision, asked verbatim</span><div class="qbody"><p><b>6.</b> Riya needs to use a USB drive received from another computer. When she connects it, she notices that her antivirus is installed but its virus definitions expired several days ago.</p>
+    <p>(a) What is the best cybersecurity practice here?<br>(b) Why does the expiry date matter?<br>(c) The scan reports a threat in one file. What should she do with that file?</p></div><textarea class="wans" spellcheck="true" placeholder="Write your answer here, the way you would write it in the exam..."></textarea><div class="ansrow"><button class="btn go sm" data-act="wcheck">Check my answer</button><button class="btn gh sm" data-act="wskip">I do not know &mdash; show the answer</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>(a) <b>Update the antivirus, scan the USB, and open it only if no threats are detected.</b> Opening files first and scanning later, disabling the antivirus, or formatting the drive without checking are all wrong.<br>(b) Because hundreds of new viruses are developed every hour, and the antivirus recognises threats by comparing files against its <b>virus database</b>. Expired definitions mean it may not recognise the newest threats.<br>(c) She should follow the antivirus program's recommended action &mdash; <b>quarantine</b> the file, which isolates it so that it cannot affect the system, or remove it. She must not open it.</div></div>
 
   <h4 class="sub">B. Apply the knowledge of HTML tags and write the HTML code to get the following output.</h4>
-  <div class="qq"><span class="why">Seen in: real paper Q2B1 &middot; table with a heading row</span>
-    <p><b>1.</b></p>
-    <div class="outbox"><table style="border-collapse:collapse;font-family:'Times New Roman',serif"><tr><th style="border:2px solid #000;padding:4px 9px">Sport</th><th style="border:2px solid #000;padding:4px 9px">Players</th></tr><tr><td style="border:2px solid #000;padding:4px 9px">Cricket</td><td style="border:2px solid #000;padding:4px 9px">11</td></tr><tr><td style="border:2px solid #000;padding:4px 9px">Football</td><td style="border:2px solid #000;padding:4px 9px">11</td></tr><tr><td style="border:2px solid #000;padding:4px 9px">Basketball</td><td style="border:2px solid #000;padding:4px 9px">5</td></tr></table></div>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span><div class="pad" data-s="rp2b1"></div></div></div>
-  <div class="qq"><span class="why">Seen in: real paper Q2B2 &middot; coloured page with a list</span>
-    <p><b>2.</b></p>
-    <div class="outbox"><div style="background:skyblue;font-family:'Times New Roman',serif;padding:8px"><h1 style="color:red;margin:0 0 6px">My Subjects</h1><ol type="i" style="color:blue;margin:0 0 0 22px"><li>English</li><li>Maths</li><li>Science</li></ol></div></div>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span><div class="pad" data-s="rp2b2"></div>
+  <div class="qq pq" id="q-rp2-23" data-q="rp2-23" data-p="rp2" data-t="build" data-m="4" data-sec="Q2 B · Write the code" data-c="rp2_23"><span class="why">Seen in: real paper Q2B1 &middot; table with a heading row</span><div class="qbody"><p><b>1.</b></p>
+    <div class="outbox"><table style="border-collapse:collapse;font-family:'Times New Roman',serif"><tr><th style="border:2px solid #000;padding:4px 9px">Sport</th><th style="border:2px solid #000;padding:4px 9px">Players</th></tr><tr><td style="border:2px solid #000;padding:4px 9px">Cricket</td><td style="border:2px solid #000;padding:4px 9px">11</td></tr><tr><td style="border:2px solid #000;padding:4px 9px">Football</td><td style="border:2px solid #000;padding:4px 9px">11</td></tr><tr><td style="border:2px solid #000;padding:4px 9px">Basketball</td><td style="border:2px solid #000;padding:4px 9px">5</td></tr></table></div></div><div class="pad pqpad" data-s="__pq_rp2_23"></div><div class="ansrow"><button class="btn go sm" data-act="bcheck">Check my code</button><button class="btn gh sm" data-act="bhint">Give me a nudge</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span><div class="pad" data-s="rp2b1"></div></div></div>
+  <div class="qq pq" id="q-rp2-24" data-q="rp2-24" data-p="rp2" data-t="build" data-m="4" data-sec="Q2 B · Write the code" data-c="rp2_24"><span class="why">Seen in: real paper Q2B2 &middot; coloured page with a list</span><div class="qbody"><p><b>2.</b></p>
+    <div class="outbox"><div style="background:skyblue;font-family:'Times New Roman',serif;padding:8px"><h1 style="color:red;margin:0 0 6px">My Subjects</h1><ol type="i" style="color:blue;margin:0 0 0 22px"><li>English</li><li>Maths</li><li>Science</li></ol></div></div></div><div class="pad pqpad" data-s="__pq_rp2_24"></div><div class="ansrow"><button class="btn go sm" data-act="bcheck">Check my code</button><button class="btn gh sm" data-act="bhint">Give me a nudge</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span><div class="pad" data-s="rp2b2"></div>
       <p style="margin-bottom:0">Marks come from <code class="t">bgcolor="skyblue"</code>, <code class="t">text="blue"</code>, the red heading via <code class="t">&lt;font color="red"&gt;</code>, and <code class="t">type="i"</code> for the lower case Roman numbers.</p></div></div>
 
   <h4 class="sub">C. Complete the HTML code to get the output shown below and rewrite.</h4>
-  <div class="qq"><span class="why">Seen in: real paper Q2C &middot; fill the blanks, links version</span>
-    <div class="outbox"><div style="font-family:'Times New Roman',serif"><h1 style="margin:0 0 8px">Useful Links</h1><span style="color:#00e;text-decoration:underline">Visit Google</span><br><br><span style="color:#00e;text-decoration:underline">Mail the school</span></div></div>
-    <div class="codeline">&lt;html&gt;<br>&lt;head&gt;<br>&lt;title&gt; Useful Links &lt;/title&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br>&lt;h1&gt; ________ &lt;/h1&gt;<br>&lt;a ________ = "http://www.google.com/"&gt; Visit Google &lt;/a&gt;<br>&lt;br&gt;&lt;br&gt;<br>&lt;a href = "________:office@school.in"&gt; Mail the school ________<br>&lt;/body&gt;<br>&lt;/html&gt;</div>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span><div class="pad" data-s="rp2c"></div>
+  <div class="qq pq" id="q-rp2-25" data-q="rp2-25" data-p="rp2" data-t="build" data-m="4" data-sec="Q2 C · Complete the code" data-c="rp2_25"><span class="why">Seen in: real paper Q2C &middot; fill the blanks, links version</span><div class="qbody"><div class="outbox"><div style="font-family:'Times New Roman',serif"><h1 style="margin:0 0 8px">Useful Links</h1><span style="color:#00e;text-decoration:underline">Visit Google</span><br><br><span style="color:#00e;text-decoration:underline">Mail the school</span></div></div>
+    <div class="codeline">&lt;html&gt;<br>&lt;head&gt;<br>&lt;title&gt; Useful Links &lt;/title&gt;<br>&lt;/head&gt;<br>&lt;body&gt;<br>&lt;h1&gt; ________ &lt;/h1&gt;<br>&lt;a ________ = "http://www.google.com/"&gt; Visit Google &lt;/a&gt;<br>&lt;br&gt;&lt;br&gt;<br>&lt;a href = "________:office@school.in"&gt; Mail the school ________<br>&lt;/body&gt;<br>&lt;/html&gt;</div></div><div class="pad pqpad" data-s="__pq_rp2_25"></div><div class="ansrow"><button class="btn go sm" data-act="bcheck">Check my code</button><button class="btn gh sm" data-act="bhint">Give me a nudge</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span><div class="pad" data-s="rp2c"></div>
       <p style="margin-bottom:0">The blanks were: <b>Useful Links</b>, <b>href</b>, <b>mailto</b>, and the closing <b>&lt;/a&gt;</b>.</p></div></div>
 
   <h4 class="sub">D. Read the antivirus screen described below and answer the questions.</h4>
-  <div class="qq"><span class="why">Seen in: real paper Q2D &middot; antivirus picture question, protection-off version</span>
-    <div class="avbox">
+  <div class="qq pq" id="q-rp2-26" data-q="rp2-26" data-p="rp2" data-t="written" data-m="4" data-sec="Q2 D · The antivirus screen" data-kw='[["the antivirus is AVG", ["avg"]], ["No, the computer is not safe", ["no", "not safe", "not appropriate", "should not", "shouldnt", "unsafe"]], ["protection is off or the definitions are outdated", ["outdat", "off", "disabled", "expired", "not active", "turned off", "old"]], ["update it and run a full scan", ["updat", "scan"]]]'><span class="why">Seen in: real paper Q2D &middot; antivirus picture question, protection-off version</span><div class="qbody"><div class="avbox">
       <div class="avrow ok"><b>&#10003; Virus Definitions</b><span>Updated today</span></div>
       <div class="avrow ok"><b>&#10003; Scheduled Scan</b><span>On</span></div>
       <div class="avrow bad"><b>&#9888; Real-Time Protection</b><span>Off</span></div>
       <div class="avrow bad"><b>&#9888; Firewall</b><span>Off</span></div>
       <div class="avfoot">AVG Antivirus &mdash; Security Status</div>
     </div>
-    <p>(a) Identify the antivirus software shown.<br>(b) The definitions are fully up to date. Is the computer therefore safe? Give a reason.<br>(c) What is the purpose of the firewall that has been switched off?<br>(d) What does "Real-Time Protection" actually do?<br>(e) State the first two actions the user should take.</p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>(a) <b>AVG Antivirus</b>.<br>(b) <b>No.</b> A red warning symbol indicates there may be a security problem, and here protection has been <b>disabled</b>. Up-to-date definitions are useless if the scan engine is not watching files as they are opened.<br>(c) A firewall is installed on a system to <b>control the incoming and outgoing network traffic</b>.<br>(d) Real-time scan means the scan engine runs <b>automatically any time a file is opened or a program is executed</b>. It runs continuously in the background, gives maximum protection by scanning opened or saved files, and displays a notification when it detects a security risk.<br>(e) He should <b>turn Real-Time Protection and the Firewall back on</b>, and then <b>run a full virus scan</b> &mdash; protection may have been disabled by a malicious program, since some Trojans prevent antivirus applications from running.</div></div>
+    <p>(a) Identify the antivirus software shown.<br>(b) The definitions are fully up to date. Is the computer therefore safe? Give a reason.<br>(c) What is the purpose of the firewall that has been switched off?<br>(d) What does "Real-Time Protection" actually do?<br>(e) State the first two actions the user should take.</p></div><textarea class="wans" spellcheck="true" placeholder="Write your answer here, the way you would write it in the exam..."></textarea><div class="ansrow"><button class="btn go sm" data-act="wcheck">Check my answer</button><button class="btn gh sm" data-act="wskip">I do not know &mdash; show the answer</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>(a) <b>AVG Antivirus</b>.<br>(b) <b>No.</b> A red warning symbol indicates there may be a security problem, and here protection has been <b>disabled</b>. Up-to-date definitions are useless if the scan engine is not watching files as they are opened.<br>(c) A firewall is installed on a system to <b>control the incoming and outgoing network traffic</b>.<br>(d) Real-time scan means the scan engine runs <b>automatically any time a file is opened or a program is executed</b>. It runs continuously in the background, gives maximum protection by scanning opened or saved files, and displays a notification when it detects a security risk.<br>(e) He should <b>turn Real-Time Protection and the Firewall back on</b>, and then <b>run a full virus scan</b> &mdash; protection may have been disabled by a malicious program, since some Trojans prevent antivirus applications from running.</div></div>
 
   <h4 class="sub">E. Read the passage given below and answer the questions.</h4>
-  <div class="qq"><span class="why">Seen in: real paper Q2E &middot; five-part passage, Trojan and spyware focus</span>
-    <p>Ananya downloads a free photo-editing tool from an advertisement. The tool works, and she uses it happily for a week. Meanwhile, strange icons appear on her desktop, her antivirus program refuses to open, and later she discovers that someone has been logging into her email account from another city.</p>
-    <p>(a) Which type of malware did Ananya most likely install?<br>(b) Give one reason from the passage that supports your answer.<br>(c) Which second type of malware explains her email account being accessed, and what does it do?<br>(d) What is meant by saying such a program creates a "backdoor"?<br>(e) State any two precautions Ananya should have taken.</p>
-    <button class="btn gh" onclick="rev(this)">Show answer</button>
-    <div class="rev"><span class="lab">ANSWER</span>(a) A <b>Trojan horse</b>.<br>(b) The tool <b>appeared to be useful software</b> and worked normally, but damaged the computer after it was installed. Some Trojans change the desktop by <b>adding silly icons</b> and <b>prevent applications from running, especially antivirus applications</b> &mdash; which is exactly what happened.<br>(c) <b>Spyware</b>. It monitors the user activity without her knowledge and reveals the collected information to another interested party &mdash; internet surfing habits, visited web pages, <b>passwords</b> and even credit card numbers. That explains how her email login was obtained. Spyware has no infection mechanism of its own and is usually dropped by trojans.<br>(d) A backdoor is an <b>easy and unauthorised way into the computer</b> that the Trojan opens for malicious users, allowing confidential or personal information to be compromised.<br>(e) Any two: download only <b>legal software</b> and avoid pirated software; do not click on pop-up ads or links from unknown sources; install an antivirus and keep it updated; install a firewall; check whether the antivirus can detect spyware and malware, and if not install an <b>anti-spyware</b> program as well.</div></div>
+  <div class="qq pq" id="q-rp2-27" data-q="rp2-27" data-p="rp2" data-t="written" data-m="4" data-sec="Q2 E · Read the passage" data-kw='[["it is a Trojan horse", ["trojan"]], ["it appeared to be useful software", ["useful", "appear", "pretend", "disguis", "claim", "legitimate", "looks like", "seem", "helpful"]], ["it does not replicate itself", ["not replicat", "no replicat", "not self-replicat", "does not replicate", "dont replicat", "no copies"]], ["download only from trusted sources", ["trusted", "genuine", "official", "reliable", "authentic", "pirated"]]]'><span class="why">Seen in: real paper Q2E &middot; five-part passage, Trojan and spyware focus</span><div class="qbody"><p>Ananya downloads a free photo-editing tool from an advertisement. The tool works, and she uses it happily for a week. Meanwhile, strange icons appear on her desktop, her antivirus program refuses to open, and later she discovers that someone has been logging into her email account from another city.</p>
+    <p>(a) Which type of malware did Ananya most likely install?<br>(b) Give one reason from the passage that supports your answer.<br>(c) Which second type of malware explains her email account being accessed, and what does it do?<br>(d) What is meant by saying such a program creates a "backdoor"?<br>(e) State any two precautions Ananya should have taken.</p></div><textarea class="wans" spellcheck="true" placeholder="Write your answer here, the way you would write it in the exam..."></textarea><div class="ansrow"><button class="btn go sm" data-act="wcheck">Check my answer</button><button class="btn gh sm" data-act="wskip">I do not know &mdash; show the answer</button></div><div class="fb"></div><div class="mk"></div><div class="rev"><span class="lab">ANSWER</span>(a) A <b>Trojan horse</b>.<br>(b) The tool <b>appeared to be useful software</b> and worked normally, but damaged the computer after it was installed. Some Trojans change the desktop by <b>adding silly icons</b> and <b>prevent applications from running, especially antivirus applications</b> &mdash; which is exactly what happened.<br>(c) <b>Spyware</b>. It monitors the user activity without her knowledge and reveals the collected information to another interested party &mdash; internet surfing habits, visited web pages, <b>passwords</b> and even credit card numbers. That explains how her email login was obtained. Spyware has no infection mechanism of its own and is usually dropped by trojans.<br>(d) A backdoor is an <b>easy and unauthorised way into the computer</b> that the Trojan opens for malicious users, allowing confidential or personal information to be compromised.<br>(e) Any two: download only <b>legal software</b> and avoid pirated software; do not click on pop-up ads or links from unknown sources; install an antivirus and keep it updated; install a firewall; check whether the antivirus can detect spyware and malware, and if not install an <b>anti-spyware</b> program as well.</div></div>
 
   <div class="box g center"><p style="margin:0"><b>End of Practice Set 2.</b> If both papers went well, you are ready. If not, the module tabs are where the repair work happens.</p></div>
 </section>
@@ -7395,6 +7314,456 @@ shuffleJokes('virusJokes','virus');
 if (document.getElementById('thCard')) thShow();
 hud();
 refreshPads();
+
+</script>
+<script>
+
+/* ================= interactive review paper engine ================= */
+var PQ = {};            /* qid -> {a:1, ok:1, m:marks awarded} */
+
+/* --- starter code for the build questions --- */
+SAMPLES['__pq_rp1_18'] = {f:'admissions.html', c:"<html>\n<head><title>Admissions</title></head>\n<body>\n\n<!-- Write the marquee here.\n     It must show ADMISSIONS OPEN,\n     bounce from side to side,\n     and stop after 5 times. -->\n\n\n</body>\n</html>"};
+SAMPLES['__pq_rp1_23'] = {f:'capitals.html', c:"<html>\n<head>\n<title>Countries</title>\n</head>\n<body>\n\n<!-- Build the table.\n     Two heading cells, then three rows of data.\n     Remember: border, <th> for the headings,\n     and every <td> inside its own <tr>. -->\n\n\n</body>\n</html>"};
+SAMPLES['__pq_rp1_24'] = {f:'planets.html', c:"<html>\n<head>\n<title>Planets</title>\n</head>\n<body>\n\n<!-- A heading, then a list numbered I, II, III, IV -->\n\n\n</body>\n</html>"};
+SAMPLES['__pq_rp1_25'] = {f:'pets.html', c:"<html>\n<head>\n<title> ______ </title>\n</head>\n<body bgcolor = \"______\">\n<h1><font color = \"______\"> My Pets </font></h1>\n<ul type = \"______\">\n<li> Dog\n<li> ______\n<li> Rabbit\n______\n</body>\n</html>"};
+SAMPLES['__pq_rp2_18'] = {f:'news.html', c:"<html>\n<head><title>News</title></head>\n<body>\n\n<!-- Write the marquee here.\n     BREAKING NEWS, scrolling right to left,\n     on a yellow strip, never stopping. -->\n\n\n</body>\n</html>"};
+SAMPLES['__pq_rp2_23'] = {f:'sports.html', c:"<html>\n<head>\n<title>Sports</title>\n</head>\n<body>\n\n<!-- Build the table.\n     Headings in <th>, then three rows of data.\n     Every <td> inside its own <tr>. -->\n\n\n</body>\n</html>"};
+SAMPLES['__pq_rp2_24'] = {f:'subjects.html', c:"<html>\n<head>\n<title>My Subjects</title>\n</head>\n<body>\n\n<!-- Sky blue page, blue text,\n     a red heading, then a list\n     numbered i, ii, iii -->\n\n\n</body>\n</html>"};
+SAMPLES['__pq_rp2_25'] = {f:'links.html', c:"<html>\n<head>\n<title> Useful Links </title>\n</head>\n<body>\n<h1> Useful Links </h1>\n<a href = \"______\"> Visit Google </a>\n<br><br>\n<a href = \"______\"> Mail the school </a>\n</body>\n</html>"};
+
+/* --- checkers: return [pass, message] --- */
+function pqq(d,sel){ try{ return d.querySelector(sel); }catch(e){ return null; } }
+function pqa(d,sel){ try{ return [].slice.call(d.querySelectorAll(sel)); }catch(e){ return []; } }
+function pqLow(c){ return (c||'').toLowerCase().replace(/\s+/g,' '); }
+function pqHas(c,t){ return pqLow(c).indexOf(t) !== -1; }
+function pqTxt(el){ return el ? (el.textContent||'').replace(/\s+/g,' ').trim().toLowerCase() : ''; }
+
+var PQCHECK = {
+  rp1_18: function(doc, code){
+    var c = pqLow(code);
+    var mq = pqq(doc,'marquee');
+    if (!mq) return [false, 'There is no &lt;marquee&gt; tag yet. That is the tag that makes text move.'];
+    if (pqTxt(mq).indexOf('admissions open') === -1)
+      return [false, 'The marquee must carry the words ADMISSIONS OPEN between its opening and closing tags.'];
+    if (c.indexOf('alternate') === -1)
+      return [false, 'It scrolls, but it does not bounce. "Bounces from side to side" means behaviour = "alternate".'];
+    if (!/loop\s*=\s*["']?5/.test(c))
+      return [false, 'It bounces, but it never stops. "Stops after 5 times" means loop = "5".'];
+    return [true, 'Exactly right \u2014 marquee tag, the correct words, behaviour="alternate" to bounce and loop="5" to stop.'];
+  },
+  rp1_23: function(doc, code){
+    var c = pqLow(code);
+    if (pqq(doc,'ul') || pqq(doc,'ol'))
+      return [false, 'This output is a grid with two facts per row, so it must be a table, not a list.'];
+    var t = pqq(doc,'table');
+    if (!t) return [false, 'There is no &lt;table&gt; tag yet.'];
+    if (c.indexOf('border') === -1)
+      return [false, 'The picture clearly shows lines around every cell, so you need the border attribute.'];
+    var ths = pqa(doc,'table th');
+    if (ths.length < 2) return [false, 'Country and Capital are headings, so they belong in &lt;th&gt; cells. Found ' + ths.length + '.'];
+    var trs = pqa(doc,'table tr');
+    if (trs.length < 4) return [false, 'Found ' + trs.length + ' row(s). You need four: the heading row plus India, Japan and France.'];
+    var bad = trs.filter(function(r){ return r.querySelectorAll('td,th').length !== 2; });
+    if (bad.length) return [false, 'Every row must hold exactly two cells. ' + bad.length + ' row(s) do not \u2014 check that each &lt;td&gt; sits inside its own &lt;tr&gt;.'];
+    var need = ['india','new delhi','japan','tokyo','france','paris'];
+    for (var i=0;i<need.length;i++) if (c.indexOf(need[i]) === -1)
+      return [false, 'The data is incomplete \u2014 "' + need[i] + '" is missing.'];
+    return [true, 'Four rows, two cells in each, headings in &lt;th&gt; and a border. That is full marks.'];
+  },
+  rp1_24: function(doc, code){
+    var c = pqLow(code);
+    if (!pqq(doc,'h1,h2,h3')) return [false, 'The word Planets is bigger and bolder than the list, so it is a heading tag \u2014 add one.'];
+    var ol = pqq(doc,'ol');
+    if (!ol) return [false, 'The markers are I, II, III, IV \u2014 numbering in a fixed order \u2014 so this is an &lt;ol&gt;, not a &lt;ul&gt;.'];
+    if (!/type\s*=\s*["']?I/.test(code))
+      return [false, 'An &lt;ol&gt; with no type gives 1, 2, 3. For capital Roman numerals you need type="I" \u2014 a capital letter I.'];
+    var lis = pqa(doc,'ol li');
+    if (lis.length < 4) return [false, 'Found ' + lis.length + ' list item(s). The picture shows four planets.'];
+    var need = ['mercury','venus','earth','mars'];
+    for (var i=0;i<need.length;i++) if (c.indexOf(need[i]) === -1)
+      return [false, '"' + need[i] + '" is missing from the list.'];
+    return [true, 'Heading, ordered list, type="I" and all four planets. Full marks.'];
+  },
+  rp1_25: function(doc, code){
+    var c = pqLow(code);
+    if (c.indexOf('______') !== -1) return [false, 'Some blanks are still unfilled \u2014 replace every ______ with a real value.'];
+    if (!/<title>\s*\S/.test(c)) return [false, 'The title is still empty. Any sensible title is accepted, "My Pets" is the obvious one.'];
+    if (c.indexOf('lightyellow') === -1) return [false, 'The page background in the picture is a pale yellow, so bgcolor must be "lightyellow".'];
+    if (!/color\s*=\s*["']?red/.test(c)) return [false, 'The heading My Pets is red, so the font colour must be "red".'];
+    if (!/type\s*=\s*["']?square/.test(c)) return [false, 'Look closely at the bullets \u2014 they are filled squares, so type must be "square".'];
+    if (c.indexOf('cat') === -1) return [false, 'The middle list item is missing. The picture shows Dog, Cat, Rabbit.'];
+    if (c.indexOf('</ul>') === -1) return [false, 'The last blank is the closing tag. The &lt;ul&gt; was opened and never closed \u2014 add &lt;/ul&gt;.'];
+    var lis = pqa(doc,'ul li');
+    if (lis.length < 3) return [false, 'The list should hold three items.'];
+    return [true, 'Every blank correct, including the closing &lt;/ul&gt; \u2014 which is the one most people lose a mark on.'];
+  },
+  rp2_18: function(doc, code){
+    var c = pqLow(code);
+    var mq = pqq(doc,'marquee');
+    if (!mq) return [false, 'There is no &lt;marquee&gt; tag yet.'];
+    if (pqTxt(mq).indexOf('breaking news') === -1)
+      return [false, 'The words BREAKING NEWS must sit between &lt;marquee&gt; and &lt;/marquee&gt;.'];
+    if (c.indexOf('yellow') === -1)
+      return [false, 'The strip is yellow, so the marquee needs bgcolor = "yellow".'];
+    if (!/direction\s*=\s*["']?left/.test(c))
+      return [false, 'Right to left is the default, but the question names the direction, so write direction = "left" to be safe.'];
+    if (c.indexOf('alternate') !== -1)
+      return [false, '"Continuously from right to left" is a plain scroll, not a bounce \u2014 remove behaviour="alternate".'];
+    return [true, 'Marquee, the right words, direction="left" and a yellow background. Since the default loop never stops, you do not need loop at all.'];
+  },
+  rp2_23: function(doc, code){
+    var c = pqLow(code);
+    var t = pqq(doc,'table');
+    if (!t) return [false, 'There is no &lt;table&gt; tag yet. Two facts per sport means a table.'];
+    if (c.indexOf('border') === -1) return [false, 'The cells have visible lines, so add the border attribute.'];
+    var ths = pqa(doc,'table th');
+    if (ths.length < 2) return [false, 'Sport and Players are headings \u2014 use &lt;th&gt; for them. Found ' + ths.length + '.'];
+    var trs = pqa(doc,'table tr');
+    if (trs.length < 4) return [false, 'Found ' + trs.length + ' row(s). You need four: the headings plus Cricket, Football and Basketball.'];
+    var bad = trs.filter(function(r){ return r.querySelectorAll('td,th').length !== 2; });
+    if (bad.length) return [false, 'Every row must hold exactly two cells \u2014 ' + bad.length + ' row(s) do not.'];
+    var need = ['cricket','football','basketball'];
+    for (var i=0;i<need.length;i++) if (c.indexOf(need[i]) === -1)
+      return [false, '"' + need[i] + '" is missing.'];
+    if (c.indexOf('5') === -1) return [false, 'Basketball has 5 players \u2014 that number is missing.'];
+    return [true, 'Headings in &lt;th&gt;, three data rows, two cells each, border on. Full marks.'];
+  },
+  rp2_24: function(doc, code){
+    var c = pqLow(code);
+    if (c.indexOf('skyblue') === -1) return [false, 'The page background is sky blue, so &lt;body bgcolor="skyblue"&gt;.'];
+    if (!/text\s*=\s*["']?blue/.test(c)) return [false, 'The body text is blue. In the notes style that is the text attribute of &lt;body&gt;.'];
+    if (!pqq(doc,'h1,h2,h3')) return [false, 'My Subjects is a heading \u2014 use a heading tag.'];
+    if (!/color\s*=\s*["']?red/.test(c)) return [false, 'The heading itself is red, so wrap it in &lt;font color="red"&gt;.'];
+    var ol = pqq(doc,'ol');
+    if (!ol) return [false, 'The markers are i, ii, iii \u2014 that is an ordered list.'];
+    if (!/type\s*=\s*["']i["']|type\s*=\s*i[\s>]/.test(code))
+      return [false, 'Small Roman numerals need type="i" \u2014 a lower case i. A capital I would give I, II, III.'];
+    var lis = pqa(doc,'ol li');
+    if (lis.length < 3) return [false, 'Found ' + lis.length + ' item(s). The picture shows three subjects.'];
+    var need = ['english','maths','science'];
+    for (var i=0;i<need.length;i++) if (c.indexOf(need[i]) === -1)
+      return [false, '"' + need[i] + '" is missing from the list.'];
+    return [true, 'Sky blue page, blue text, red heading and a type="i" ordered list. Full marks.'];
+  },
+  rp2_25: function(doc, code){
+    var c = pqLow(code);
+    if (c.indexOf('______') !== -1) return [false, 'Both blanks still need filling.'];
+    if (c.indexOf('google.com') === -1) return [false, 'The first link goes to Google, so href must hold the Google web address.'];
+    if (c.indexOf('mailto:') === -1) return [false, 'The second link opens the mail program. The keyword for that is mailto: \u2014 not email:.'];
+    if (c.indexOf('office@school.in') === -1) return [false, 'The mail link needs the school address, office@school.in, straight after mailto:.'];
+    var as = pqa(doc,'a');
+    if (as.length < 2) return [false, 'Both anchors must survive \u2014 only ' + as.length + ' link(s) found.'];
+    return [true, 'A normal web link and a mailto: link. Note there is no space after the colon.'];
+  }
+};
+
+/* --- normalisers --- */
+function pqNormShort(v){
+  return (v||'').toLowerCase()
+    .replace(/&lt;/g,'<').replace(/&gt;/g,'>')
+    .replace(/[\u2018\u2019\u201C\u201D]/g,'"')
+    .replace(/[.,;:!?"']/g,'')
+    .replace(/\s+/g,' ').trim();
+}
+function pqDist(a,b){
+  if (a === b) return 0;
+  var m = a.length, n = b.length;
+  if (Math.abs(m-n) > 3) return 99;
+  var prev = [], cur = [], i, j;
+  for (j=0;j<=n;j++) prev[j] = j;
+  for (i=1;i<=m;i++){
+    cur[0] = i;
+    for (j=1;j<=n;j++){
+      cur[j] = Math.min(prev[j]+1, cur[j-1]+1, prev[j-1] + (a[i-1]===b[j-1] ? 0 : 1));
+    }
+    prev = cur.slice();
+  }
+  return prev[n];
+}
+function pqNormCode(v){
+  return (v||'').toLowerCase()
+    .replace(/&lt;/g,'<').replace(/&gt;/g,'>').replace(/&amp;/g,'&')
+    .replace(/[\u2018\u2019\u201C\u201D]/g,'"')
+    .replace(/["']/g,'')
+    .replace(/\s+/g,'').trim();
+}
+
+/* --- state / scoreboard --- */
+function pqRecord(el, ok, marks){
+  var qid = el.dataset.q;
+  if (PQ[qid]) return;                       /* first answer is the one that counts */
+  PQ[qid] = {ok: !!ok, m: marks};
+  el.classList.add(ok ? 'done' : 'miss');
+  pqSync(el.dataset.p);
+}
+function pqSync(pid){
+  var host = document.getElementById('ps-' + pid);
+  if (!host) return;
+  var qs = document.querySelectorAll('#p-' + pid + ' .pq');
+  var nq = qs.length, ans = 0, right = 0, got = 0, mm = 0;
+  var weak = {};
+  for (var i=0;i<qs.length;i++){
+    var q = qs[i], st = PQ[q.dataset.q], m = +q.dataset.m;
+    mm += m;
+    if (!st) continue;
+    ans++; got += st.m;
+    if (st.ok) right++;
+    if (st.m < m){
+      var sec = q.dataset.sec || 'General';
+      weak[sec] = (weak[sec] || 0) + (m - st.m);
+    }
+  }
+  var pct = mm ? Math.round(got * 100 / mm) : 0;
+  host.querySelector('.psbar i').style.width = (ans ? Math.round(ans*100/nq) : 0) + '%';
+  host.querySelector('.psmeta .a').textContent = ans;
+  host.querySelector('.psmeta .c').textContent = right;
+  host.querySelector('.psmeta .mks').textContent = got;
+  host.querySelector('.psmeta .pc').textContent = pct + '%';
+  var wbox = host.querySelector('.psweak');
+  var keys = Object.keys(weak).sort(function(a,b){ return weak[b]-weak[a]; });
+  if (ans >= 3 && keys.length){
+    var li = '';
+    for (var k=0;k<Math.min(3,keys.length);k++)
+      li += '<li>' + keys[k] + ' <b>(' + weak[keys[k]] + ' mark' + (weak[keys[k]]>1?'s':'') + ' lost)</b></li>';
+    wbox.innerHTML = '<b>Revise these first:</b><ul>' + li + '</ul>';
+    wbox.classList.add('on');
+  } else if (ans >= 3){
+    wbox.innerHTML = '<b>Nothing lost so far. Keep going.</b>';
+    wbox.classList.add('on');
+  } else {
+    wbox.classList.remove('on');
+  }
+}
+function pqReset(pid){
+  var qs = document.querySelectorAll('#p-' + pid + ' .pq');
+  for (var i=0;i<qs.length;i++){
+    var q = qs[i];
+    delete PQ[q.dataset.q];
+    q.classList.remove('done','miss');
+    delete q.dataset.done;
+    delete q.dataset.nudge;
+    var fb = q.querySelector('.fb'); if (fb){ fb.className = 'fb'; fb.innerHTML = ''; }
+    var mk = q.querySelector('.mk'); if (mk){ mk.className = 'mk'; mk.innerHTML = ''; }
+    var rv = q.querySelector('.rev'); if (rv) rv.classList.remove('on');
+    var os = q.querySelectorAll('.opt');
+    for (var o=0;o<os.length;o++){ os[o].disabled = false; os[o].classList.remove('right','wrong'); }
+    var inp = q.querySelector('.ain'); if (inp){ inp.value = ''; inp.className = inp.className.replace(/\s*(ok|no)\b/g,''); inp.disabled = false; }
+    var wa = q.querySelector('.wans'); if (wa) wa.value = '';
+    var pad = q.querySelector('.pqpad');
+    if (pad && pad._run !== undefined){
+      var ta = pad.querySelector('.padta');
+      if (ta && SAMPLES[pad.dataset.s]){ ta.value = SAMPLES[pad.dataset.s].c; pad._run(); }
+    }
+  }
+  pqSync(pid);
+  window.scrollTo(0, document.getElementById('p-' + pid).offsetTop - 20);
+  toast('Fresh attempt \u2014 this paper is blank again');
+}
+
+/* --- feedback painter --- */
+function pqFB(el, ok, msg){
+  var fb = el.querySelector('.fb');
+  fb.className = 'fb on ' + (ok ? 'ok' : 'no');
+  fb.innerHTML = msg;
+}
+function pqOpenRev(el){
+  var rv = el.querySelector('.rev');
+  if (rv && !rv.classList.contains('on')){
+    rv.classList.add('on');
+    if (typeof refreshPads === 'function') refreshPads();
+  }
+}
+
+/* --- MCQ --- */
+document.addEventListener('click', function(e){
+  var opt = e.target.closest('.pq .opt');
+  if (!opt) return;
+  var q = opt.closest('.pq');
+  if (q.dataset.done) return;
+  q.dataset.done = '1';
+  var ans = q.dataset.a, ok = opt.dataset.k === ans;
+  var os = q.querySelectorAll('.opt');
+  for (var i=0;i<os.length;i++){
+    os[i].disabled = true;
+    if (os[i].dataset.k === ans) os[i].classList.add('right');
+    else if (os[i] === opt) os[i].classList.add('wrong');
+  }
+  pqFB(q, ok, (ok ? '<b>Correct.</b> ' : '<b>Not that one \u2014 the answer is (' + ans + ').</b> ')
+              + 'The reasoning is under the answer below.');
+  pqOpenRev(q);
+  pqRecord(q, ok, ok ? +q.dataset.m : 0);
+  score(ok, 10);
+  if (ok) spark(12);
+});
+
+/* --- everything with a button --- */
+document.addEventListener('click', function(e){
+  var b = e.target.closest('.pq [data-act]');
+  if (!b) return;
+  var q = b.closest('.pq'), act = b.dataset.act;
+
+  if (act === 'hint'){ toast(q.dataset.h || 'No hint for this one'); return; }
+
+  if (act === 'check' || act === 'giveup'){
+    var inp = q.querySelector('.ain');
+    var keys = JSON.parse(q.dataset.k || '[]');
+    var isCode = q.dataset.t === 'codefix';
+    if (act === 'giveup'){
+      if (!q.dataset.done){ q.dataset.done = '1'; pqRecord(q, false, 0); score(false, 10); }
+      inp.disabled = true;
+      pqFB(q, false, '<b>No marks for this one.</b> Read the answer below, then come back to it tomorrow.');
+      pqOpenRev(q);
+      return;
+    }
+    var v = inp.value;
+    if (!v.trim()){ toast('Type something first'); return; }
+    var norm = isCode ? pqNormCode : pqNormShort;
+    var mine = norm(v), hit = false;
+    for (var i=0;i<keys.length;i++) if (norm(keys[i]) === mine){ hit = true; break; }
+    if (!hit && !isCode){                         /* be fair: allow the key inside a sentence */
+      for (var j=0;j<keys.length;j++){
+        var kk = norm(keys[j]);
+        if (kk.length > 2 && mine.indexOf(kk) !== -1){ hit = true; break; }
+      }
+    }
+    if (!hit && isCode && (+(q.dataset.nudge || 0)) < 2){
+      var best = 99;                              /* near miss: right idea, stray typo */
+      for (var m2=0;m2<keys.length;m2++) best = Math.min(best, pqDist(norm(keys[m2]), mine));
+      if (best > 0 && best <= 2 && mine.length >= 8){
+        q.dataset.nudge = (+(q.dataset.nudge || 0)) + 1;
+        inp.classList.add('no');
+        pqFB(q, false, '<b>So close \u2014 not marked yet.</b> The idea is right but '
+          + (best === 1 ? 'one character is' : 'two characters are')
+          + ' wrong. Check the spelling letter by letter, then press Check again.');
+        return;                                   /* no penalty: let them fix it */
+      }
+    }
+    q.dataset.done = '1';
+    inp.disabled = true;
+    inp.classList.add(hit ? 'ok' : 'no');
+    pqFB(q, hit, hit ? '<b>Correct.</b> That is exactly what the examiner wants.'
+                     : '<b>Not quite.</b> The correct version is below \u2014 read why.');
+    pqOpenRev(q);
+    pqRecord(q, hit, hit ? +q.dataset.m : 0);
+    score(hit, 10);
+    if (hit) spark(12);
+    return;
+  }
+
+  if (act === 'wcheck' || act === 'wskip'){
+    var ta = q.querySelector('.wans');
+    var kw = JSON.parse(q.dataset.kw || '[]');
+    var mine2 = ' ' + (ta.value || '').toLowerCase().replace(/[\u2018\u2019]/g,"'").replace(/\s+/g,' ') + ' ';
+    if (act === 'wcheck' && !ta.value.trim()){
+      toast('Write your answer first \u2014 or press "I do not know"');
+      return;
+    }
+    var skip = (act === 'wskip');
+    var hits = 0, li = '';
+    for (var a=0;a<kw.length;a++){
+      var lab = kw[a][0], syn = kw[a][1], found = false;
+      if (!skip) for (var b2=0;b2<syn.length;b2++) if (mine2.indexOf(syn[b2]) !== -1){ found = true; break; }
+      if (found) hits++;
+      li += '<li class="' + (found ? 'hit' : 'gap') + '"><span class="i">'
+          + (found ? '\u2713' : '\u2717') + '</span><span>' + lab + '</span></li>';
+    }
+    var mk = q.querySelector('.mk');
+    var full = +q.dataset.m;
+    var earned = kw.length ? Math.round(full * hits / kw.length) : 0;
+    if (skip) earned = 0;
+    mk.innerHTML =
+      '<p class="mkh">' + (skip ? 'The key ideas you needed' : 'Key ideas found in your answer \u2014 '
+        + hits + ' of ' + kw.length) + '</p><ul>' + li + '</ul>'
+      + '<div class="selfrow"><span class="lb">Now read the model answer below. Did you really cover it?</span>'
+      + '<button class="btn gh sm" data-act="self" data-v="1">Yes, all of it</button>'
+      + '<button class="btn gh sm" data-act="self" data-v="0.5">Some of it</button>'
+      + '<button class="btn gh sm" data-act="self" data-v="0">No, I missed it</button>'
+      + '<span class="sfb"></span></div>';
+    mk.classList.add('on');
+    pqFB(q, !skip && hits === kw.length,
+      skip ? '<b>No marks.</b> Read the model answer, then write it out from memory once.'
+           : (hits === kw.length
+              ? '<b>Every key idea is there.</b> Check the wording against the model answer below.'
+              : '<b>' + hits + ' of ' + kw.length + ' key ideas.</b> The crosses above are the marks you would have lost.'));
+    pqOpenRev(q);
+    if (!q.dataset.done){
+      q.dataset.done = '1';
+      pqRecord(q, !skip && hits === kw.length, earned);
+      score(!skip && hits === kw.length, 10);
+      if (hits === kw.length && !skip) spark(14);
+    }
+    return;
+  }
+
+  if (act === 'self'){
+    var v3 = parseFloat(b.dataset.v);
+    var full3 = +q.dataset.m;
+    var m3 = Math.round(full3 * v3);
+    var qid3 = q.dataset.q;
+    if (PQ[qid3]){ PQ[qid3].m = m3; PQ[qid3].ok = (v3 === 1); }
+    q.classList.toggle('done', v3 === 1);
+    q.classList.toggle('miss', v3 !== 1);
+    var row = b.closest('.selfrow');
+    var bs = row.querySelectorAll('[data-act="self"]');
+    for (var z=0;z<bs.length;z++) bs[z].classList.remove('go');
+    b.classList.add('go');
+    row.querySelector('.sfb').innerHTML = m3 + ' of ' + full3 + ' mark' + (full3>1?'s':'') + ' recorded';
+    pqSync(q.dataset.p);
+    return;
+  }
+
+  if (act === 'bhint'){
+    var ck0 = PQCHECK[q.dataset.c];
+    var pad0 = q.querySelector('.pqpad');
+    var ta0 = pad0 && pad0.querySelector('.padta');
+    var fr0 = pad0 && pad0.querySelector('.padframe');
+    if (!ta0 || !fr0){ toast('Give the editor a moment to load'); return; }
+    var doc0 = null;
+    try { doc0 = fr0.contentDocument; } catch(err){}
+    var r0 = ck0(doc0 || document.implementation.createHTMLDocument(''), ta0.value);
+    toast(r0[0] ? 'It already works \u2014 press Check my code' : String(r0[1]).replace(/&lt;/g,'<').replace(/&gt;/g,'>'));
+    return;
+  }
+
+  if (act === 'bcheck'){
+    var ck = PQCHECK[q.dataset.c];
+    var pad = q.querySelector('.pqpad');
+    var ta2 = pad && pad.querySelector('.padta');
+    var fr = pad && pad.querySelector('.padframe');
+    if (!ta2 || !fr){ toast('Give the editor a moment to load'); return; }
+    fr.srcdoc = withImages(ta2.value);
+    setTimeout(function(){
+      var doc = null;
+      try { doc = fr.contentDocument; } catch(err){}
+      if (!doc){ toast('Could not read the preview \u2014 press Run, then Check again'); return; }
+      var r = ck(doc, ta2.value);
+      pqFB(q, r[0], (r[0] ? '<b>That is it.</b> ' : '<b>Not yet.</b> ') + r[1]);
+      if (r[0]){
+        if (!q.dataset.done){
+          q.dataset.done = '1';
+          pqRecord(q, true, +q.dataset.m);
+          score(true, 14);
+        }
+        spark(26);
+        pqOpenRev(q);
+      } else {
+        score(false, 14);
+      }
+    }, 240);
+    return;
+  }
+}, false);
+
+/* build-question editors are ordinary pads, so the existing refresher renders them */
+(function(){
+  var prev = refreshPads;
+  refreshPads = function(){
+    prev();
+    var ps = document.querySelectorAll('.pqpad:not([data-built])');
+    for (var i=0;i<ps.length;i++) if (ps[i].offsetParent !== null) buildPad(ps[i]);
+  };
+})();
+setTimeout(function(){ pqSync('rp1'); pqSync('rp2'); }, 60);
 
 </script>
 </body>
